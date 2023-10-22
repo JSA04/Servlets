@@ -1,5 +1,10 @@
 package com.example.servlets;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 // Importações do Servlet
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +18,7 @@ import com.example.jdbc.Pedido.PedidoConexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 @WebServlet(name = "detalhes-pedido", value = "/detalhe-pedido")
 public class DetalhesPedidoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,7 +27,7 @@ public class DetalhesPedidoServlet extends HttpServlet {
         int id_pedido = Integer.parseInt(request.getParameter("id_pedido"));
         String cliente = "";
         String total = "";
-        StringBuilder listaItems = new StringBuilder();
+        List<Map<String, String>> listaItems = new ArrayList<>();
 
         try {
             ResultSet pedidos = new PedidoConexao().buscarItensPorIDPedido(id_pedido);
@@ -33,13 +39,13 @@ public class DetalhesPedidoServlet extends HttpServlet {
                     total = String.format("R$%.2f", pedidos.getDouble("TOTAL"));
                 }
 
-                listaItems.append(pedidos.getString("DESC"));
-                listaItems.append("%%");
-                listaItems.append(pedidos.getString("QTD"));
-                listaItems.append("%%");
-                listaItems.append(String.format("R$%.2f", pedidos.getDouble("VALOR_UNI")));
+                Map<String, String> pedido = new HashMap<>(3);
 
-                listaItems.append("///");
+                pedido.put("nome", pedidos.getString("DESC"));
+                pedido.put("qtd", pedidos.getString("QTD"));
+                pedido.put("valor_uni", String.format("R$%.2f", pedidos.getDouble("VALOR_UNI")));
+
+                listaItems.add(pedido);
             }
 
         } catch (SQLException e) {
@@ -49,7 +55,7 @@ public class DetalhesPedidoServlet extends HttpServlet {
         request.setAttribute("id_pedido", id_pedido);
         request.setAttribute("titulo", "Pedido N° " + id_pedido);
         request.setAttribute("cliente", cliente);
-        request.setAttribute("listaItems", listaItems.toString());
+        request.setAttribute("listaItems", listaItems);
         request.setAttribute("total", total);
 
 

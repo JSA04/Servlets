@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
@@ -26,17 +31,15 @@
     <main>
         <div id="produtos">
 
-            <% String produtos = String.valueOf(request.getAttribute("listaProdutos")); %>
-            <% String[] listaPedidos = produtos.split("///"); %>
-            <% for (String produto: listaPedidos) { %>
-            <% String[] pInfo = produto.split("%%"); %>
+            <% List<Map<String, String>> produtos = (ArrayList) (request.getAttribute("listaProdutos")); %>
+            <% for (Map<String, String> produto: produtos) { %>
 
-            <div class="produto" id="produto_<%= pInfo[0] %>">
-                <a href="pedidos?id_produto=<%= pInfo[0] %>">
-                    <% if (pInfo[1] == null) { %>
+            <div class="produto" id="produto_<%= produto.get("id") %>">
+                <a href="pedidos?id_produto=<%= produto.get("id") %>">
+                    <% if (produto.get("imagem") == null || produto.get("imagem").equals("")) { %>
                     <div class="produto_img" style="background-image: url('img/produto.svg')"></div>
                     <% } else { %>
-                    <div class="produto_img" style="background-image: url('<%= pInfo[2] %>')"></div>
+                    <div class="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
                     <% } %>
                 </a>
                 <button class="produto_button">Remover Produto</button>

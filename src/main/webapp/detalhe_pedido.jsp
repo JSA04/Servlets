@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map" %>
 
 <!DOCTYPE html>
 <html lang="pt_br">
@@ -34,14 +35,12 @@
                     <h1>#${id_pedido} - ${cliente}</h1>
                 </div>
                 <div id="desc_pedido">
-                    <% String items = (String) request.getAttribute("listaItems");
-                       String[] lista_items = items.split("///"); %>
-                    <% for (String item: lista_items) { %>
-                        <% String[] i = item.split("%%"); %>
+                    <% List<Map<String, String>> items = (ArrayList) request.getAttribute("listaItems"); %>
+                    <% for (Map<String, String> item: items) { %>
                         <div class="desc">
-                            <p>Produto: <%= i[0] %></p>
-                            <p>Quantidade: <%= i[1] %></p>
-                            <p>Valor Unitário: <%= i[2] %></p>
+                            <p>Produto: <%= item.get("nome") %></p>
+                            <p>Quantidade: <%= item.get("qtd") %></p>
+                            <p>Valor Unitário: <%= item.get("valor_uni") %></p>
                         </div>
 
                     <% } %>

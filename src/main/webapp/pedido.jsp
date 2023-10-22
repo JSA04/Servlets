@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt_br">
@@ -26,18 +29,16 @@
     </header>
     <main>
         <div id="pedidos">
-            <% String pedidos = String.valueOf(request.getAttribute("listaPedidos")); %>
-            <% String[] listaPedidos = pedidos.split("///"); %>
-            <% for (String pedido: listaPedidos) { %>
-            <% String[] pInfo = pedido.split("%%"); %>
+            <% List<Map<String, String>> pedidos = (ArrayList) request.getAttribute("listaPedidos"); %>
+            <% for (Map<String, String> pedido: pedidos) { %>
 
-            <a href="detalhe-pedido?id_pedido=<%= pInfo[0] %>" class="pedido">
-                <h1 class="nome_cliente"><%= pInfo[1] %></h1>
+            <a href="detalhe-pedido?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">
+                <h1 class="nome_cliente"><%= pedido.get("cliente") %></h1>
                 <div class="pedido_info">
-                    <p>Total: <%= pInfo[2] %></p>
-                    <% if (pInfo[3].equalsIgnoreCase("ENTREGUE")) { %>
+                    <p>Total: <%= pedido.get("total") %></p>
+                    <% if (pedido.get("status").equalsIgnoreCase("ENTREGUE")) { %>
                         <div class="status_entrega pedido_entregue"></div>
-                    <% } else if (pInfo[3].equalsIgnoreCase("EM ANDAMENTO")) { %>
+                    <% } else if (pedido.get("status").equalsIgnoreCase("EM ANDAMENTO")) { %>
                         <div class="status_entrega pedido_andamento"></div>
                     <% } else { %>
                         <div class="status_entrega pedido_cancelado"></div>

@@ -1,5 +1,10 @@
 package com.example.servlets;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 // Importações do Servlet
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +23,7 @@ public class PedidosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
-        StringBuilder listaPedidos = new StringBuilder();
+        List<Map<String, String>> listaPedidos = new ArrayList<>();
         String produto = "";
 
         try {
@@ -28,15 +33,14 @@ public class PedidosServlet extends HttpServlet {
 
                 if (pedidos.isFirst()) produto = pedidos.getString("PRODUTO");
 
-                listaPedidos.append(pedidos.getString("ID_PEDIDO"));
-                listaPedidos.append("%%");
-                listaPedidos.append(pedidos.getString("CLIENTE"));
-                listaPedidos.append("%%");
-                listaPedidos.append(String.format("R$%.2f", pedidos.getDouble("TOTAL")));
-                listaPedidos.append("%%");
-                listaPedidos.append(pedidos.getString("STATUS"));
+                Map<String, String> pedido = new HashMap<>(4);
 
-                listaPedidos.append("///");
+                pedido.put("id_pedido", pedidos.getString("ID_PEDIDO"));
+                pedido.put("cliente", pedidos.getString("CLIENTE"));
+                pedido.put("total", String.format("R$%.2f", pedidos.getDouble("TOTAL")));
+                pedido.put("status", pedidos.getString("STATUS"));
+
+                listaPedidos.add(pedido);
             }
 
         } catch (SQLException e) {

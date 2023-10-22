@@ -1,5 +1,10 @@
 package com.example.servlets;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+
 // Importações do Servlet
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,20 +23,20 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        StringBuilder listaProdutos = new StringBuilder();
+        List<Map<String, String>> listaProdutos = new ArrayList<>();
 
         try {
             ResultSet produtos = new ProdutoConexao().buscar();
 
             while (produtos.next()){
 
-                listaProdutos.append(produtos.getInt("id"));
-                listaProdutos.append("%%");
-                listaProdutos.append(produtos.getString("nome"));
-                listaProdutos.append("%%");
-                listaProdutos.append(produtos.getString("imagem"));
+                Map<String, String> produto = new HashMap<>(3);
 
-                listaProdutos.append("///");
+                produto.put("id", produtos.getString("id"));
+                produto.put("nome", produtos.getString("nome"));
+                produto.put("imagem", produtos.getString("imagem"));
+
+                listaProdutos.add(produto);
             }
 
         } catch (SQLException e) {
@@ -39,7 +44,7 @@ public class DashboardServlet extends HttpServlet {
         }
 
         request.setAttribute("titulo", "Produtos");
-        request.setAttribute("listaProdutos", listaProdutos.toString());
+        request.setAttribute("listaProdutos", listaProdutos);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }

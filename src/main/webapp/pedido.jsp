@@ -29,7 +29,7 @@
     </header>
     <main>
         <div id="pedidos">
-            <% List<Map<String, String>> pedidos = (ArrayList) request.getAttribute("listaPedidos"); %>
+            <% List<Map<String, String>> pedidos = (ArrayList) (request.getAttribute("listaPedidos")); %>
             <% for (Map<String, String> pedido: pedidos) { %>
 
             <a href="detalhe-pedido?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">

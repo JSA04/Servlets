@@ -49,7 +49,7 @@ public class PedidosServlet extends HttpServlet {
 
         request.setAttribute("titulo", "Produto N° " + id_produto + ": " + produto);
         request.setAttribute("id_produto", id_produto);
-        request.setAttribute("listaPedidos", listaPedidos.toString());
+        request.setAttribute("listaPedidos", listaPedidos);
 
         request.getRequestDispatcher("pedido.jsp").forward(request, response);
     }

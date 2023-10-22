@@ -35,7 +35,7 @@
                     <h1>#${id_pedido} - ${cliente}</h1>
                 </div>
                 <div id="desc_pedido">
-                    <% List<Map<String, String>> items = (ArrayList) request.getAttribute("listaItems"); %>
+                    <% List<Map<String, String>> items = (ArrayList) (request.getAttribute("listaItems")); %>
                     <% for (Map<String, String> item: items) { %>
                         <div class="desc">
                             <p>Produto: <%= item.get("nome") %></p>

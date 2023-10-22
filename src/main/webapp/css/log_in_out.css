@@ -1,0 +1,223 @@
+/* Formulario */
+.div_log_in_out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40%;
+}
+
+#form_log_in_out {
+    width: 80%;
+}
+
+.form_head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.form_head #logo {
+    max-width: 110px;
+    max-height: 70px;
+}
+
+.form_head h1 {
+    font-size: 35px;    
+}
+
+.form_campo {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    gap: 10px;
+}
+
+.form_checkbox {
+    display: flex;
+    gap: 32px;
+}
+
+.form_checkbox input {
+    min-width: 30px;
+    max-height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    cursor: pointer;
+}
+
+.form_checkbox input:checked {
+    border: 8px solid #F6A11D;
+}
+
+.form_checkbox #termos_id {
+    max-width: 20px;
+}
+
+.form_checkbox p {
+    font-size: 14px;
+}
+
+#confirmar_button {
+    background-image: url("../img/textura.svg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 70px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    min-width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* Background */
+.background {
+    min-width: 60%;
+    min-height: 100%;
+}
+
+.background_img {
+    z-index: -1;
+    background-image: url("../img/bg.svg");
+    background-repeat: no-repeat;
+    background-position: top 8%  left 80%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Media-Query com width */
+@media screen and (max-width: 1800px) {
+    .background {
+        background-position: top 8% left 60%;
+    }
+    #form_log_in_out {
+        padding: 0 10%;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .div_log_in_out {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 60%;
+    }
+    .div_background,
+    .background {
+        min-width: 40%;
+        background-position: top 8% left 45%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .div_log_in_out {
+        min-width: 100%;
+    }
+    .background {
+        display: none;
+    }
+    .form_checkbox p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .form_checkbox p {
+        font-size: 11px;
+    }
+}
+
+/* Media-Query com height */
+@media screen and (max-height: 880px) {
+    .form_campo {
+        padding-bottom: 15px;
+    }
+    .form_head {
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-height: 840px) {
+    .form_head #confirmar_button {
+        min-height: 50px;
+    }
+    
+    .form_head h1 {
+        font-size: 20px;
+    }
+
+    .form_campo {
+        display: flex;
+        padding-bottom: 15px;
+        gap: 10px;
+    }
+
+    .form_campo input {
+        padding: 10px 15px;
+    }
+
+    .form_checkbox input {
+        min-width: 20px;
+        max-height: 20px;
+    }
+
+    .form_checkbox input:checked {
+        border: 5px solid #F6A11D;
+    }
+
+    .form_checkbox p {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-height: 760px) {
+    #confirmar_button {
+        min-height: 50px;
+    }
+
+    img {
+        max-width: 90px;
+        max-height: 50px;
+    }
+}
+
+@media screen and (max-height: 730px) {
+    .div_log_in_out {
+        max-width: 90%;
+    }
+
+    .background {
+        display: none;
+    }
+}
+
+/* Height e Width */
+@media screen and (max-height: 700px) {
+    .div_logout .form_campo {
+        min-width: 45%;
+    }
+
+    .div_logout .campos {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-height: 700px) and (max-width: 560px) {
+    label {
+        font-size: 12px;
+    }
+
+    .div_logout .form_campo {
+        max-width: 23%;
+    }
+}

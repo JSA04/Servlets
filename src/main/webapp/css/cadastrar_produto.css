@@ -1,0 +1,117 @@
+.div_cadastrar_produto {
+    display: flex;
+    min-width: 800px;
+    height: 70vh;
+    background-color: white;
+    border-radius: 20px;   
+}
+
+.div_cadastrar_produto *{
+    overflow: hidden;
+}
+
+.div_cadastrar_produto h1 {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.div_cadastrar_produto form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 20px;
+}
+
+.produto_infos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    padding: 10px 0 20px 0;
+    gap: 10px;
+}
+
+#escolher_img[type="file"] {
+    display: none;
+}
+
+label[for="escolher_img"] {
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    padding-top: 5px;
+    color: #FFF;
+    border-radius: 12px;
+    background-color: #F9F9F9;
+    background-repeat: no-repeat;
+    background-position: center top 50%;
+    background-size: 20%;
+    background-image: url("../img/img_placeholder.svg");
+    cursor: pointer;
+    color: black;
+}
+
+#confirmar_button {
+    background-image: url("../img/textura.svg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 70px;
+    border-radius: 12px;
+    color: white;
+    min-width: 100%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .div_cadastrar_produto {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-height: 980px) {
+    .div_cadastrar_produto {
+        height: 75vh;
+    }
+    
+    label[for="escolher_img"] {
+        height: 40%;
+    }
+}
+
+@media screen and (max-height: 780px) {
+    label[for="escolher_img"] {
+        font-size: 0;
+        background-size: 15%;
+        height: 20%;
+    }
+}
+
+@media screen and (max-height: 680px) {
+    .info {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        padding: 0px 0 10px 0;
+    }
+}
+
+@media screen and (max-height: 680px) {
+    .div_cadastrar_produto form {
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .div_cadastrar_produto h1 {
+        font-size: 35px;
+    }
+}

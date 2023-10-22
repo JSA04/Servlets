@@ -1,0 +1,119 @@
+/* Header */
+header {
+    min-width: 100vw;
+    min-height: 23%;
+    background-image: url("../../img/vector_header.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+  }
+
+.titulo {
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    padding-top: 50px;
+}
+
+.nav_button {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.header_button {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    max-height: 55px;
+    border-radius: 12px;
+    border: 3px solid white;
+    font-weight: bolder;
+    padding: 0 5px;
+}
+
+#entrar_button,
+#add_produto_button,
+#voltar_button {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#entrar_button:hover,
+#add_produto_button:hover,
+#voltar_button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#cadastrar_button,
+#sair_button {
+    color: #F49010;
+    background-color: white;
+}
+
+#cadastrar_button:hover,
+#sair_button:hover {
+    background-color: #fdd5a1;
+}
+
+@media screen and (max-width: 1700px) {
+    .nav {
+        padding-top: 30px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .nav {
+        gap: 16px;
+        padding-top: 20px;
+    }
+    .header_button {
+        min-width: 100px;
+        max-height: 45px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .nav_button {
+        gap: 8px;
+    }
+
+    .nav_button {
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .nav_button {
+        justify-content: end;
+    }
+}
+
+@media screen and (max-height: 715px) {
+    .nav_button {
+        justify-content: left;
+    }
+}
+
+@media screen and (max-height: 715px) {
+    .nav {
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-height: 550px) {
+    .nav {
+        padding-top: 10px;
+    }
+}

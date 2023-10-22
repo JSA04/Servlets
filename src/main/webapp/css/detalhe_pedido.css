@@ -1,0 +1,40 @@
+#pedido {
+    display: flex;
+    flex-direction: column;
+    min-width: 95%;
+    height: 76vh;
+    background-color: lightgray;
+    border-radius: 15px;    
+}
+
+#titulo_pedido h1 {
+    font-size: 40px;
+}
+
+#div_pedido {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100%;
+}
+
+#desc_pedido {
+    height: 50vh;
+}
+
+.desc {
+    min-width: 100%;
+    justify-content: space-between;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.desc p {
+    font-size: 25px;
+}
+
+#valor_final p {
+    text-align: end;
+    font-size: 30px;
+}

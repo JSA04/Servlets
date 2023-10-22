@@ -1,0 +1,10 @@
+footer {
+    min-width: 100%;
+    min-height: 50%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    background-image: url("../../img/vector_footer.svg");
+    z-index: -1;
+}

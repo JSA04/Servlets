@@ -13,13 +13,12 @@ public class Produto {
     private String descricao;
 
     //CONSTRUTOR
-    public Produto(String nome, int fk_Adiministrador_id, String imagem, int quantidade, double preco, int id, Date data_validade, String descricao) {
+    public Produto(String nome, int fk_Adiministrador_id, String imagem, int quantidade, double preco, Date data_validade, String descricao) {
         this.nome = nome;
-        this.imagem =imagem;
-        this.fk_Adiministrador_id=fk_Adiministrador_id;
+        this.imagem = imagem;
+        this.fk_Adiministrador_id = fk_Adiministrador_id;
         this.quantidade = quantidade;
         this.preco = preco;
-        this.id = id;
         this.data_validade=data_validade;
         this.descricao = descricao;
     }

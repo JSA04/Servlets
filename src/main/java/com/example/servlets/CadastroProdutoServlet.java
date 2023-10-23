@@ -9,7 +9,7 @@ import com.example.jdbc.Produto.Produto;
 import java.io.IOException;
 import java.sql.Date;
 
-@WebServlet(name = "ServletCadastroProduto", value = "/cadastrarProduto")
+@WebServlet(name = "cadastrar-produto", value = "/cadastrar_produto")
 public class CadastroProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -18,7 +18,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         // String tipo = request.getParameter("tipo_id");
         String precoString = request.getParameter("preco_id");
         String quantidadeString = request.getParameter("quantidade_id");
-        String linkImagem = request.getParameter("imagem_id");
+        String linkImagem = request.getParameter("imagem_url");
         String descricao = request.getParameter("descricao_id");
         String dataValidadeString = request.getParameter("validade_id");
 
@@ -29,9 +29,9 @@ public class CadastroProdutoServlet extends HttpServlet {
 
         if (produtoConexao.inserir(produto)){
             produtoConexao.inserir(produto);
-            request.getRequestDispatcher("index.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("index.html");
+            request.getRequestDispatcher("index.html").forward(request, response);
         }
     }
 }

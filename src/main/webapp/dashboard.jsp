@@ -42,7 +42,9 @@
                     <div class="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
                     <% } %>
                 </a>
-                <button class="produto_button">Remover Produto</button>
+                <a href="excluir?id_produto=<%= produto.get("id") %>">
+                    <button class="produto_button"> Remover Produto </button>
+                </a>
             </div>
 
             <% } %>

@@ -90,7 +90,7 @@ public class ProdutoConexao implements ProdutoInterface{
         }
     }
     //REMOVE PRODUTO
-       public boolean remover(Produto produto) {
+       public boolean remover(int produto_id) {
         conectar();
         //VERIFICA SE O REGISTRO NÃO EXISTE
         try {
@@ -100,7 +100,7 @@ public class ProdutoConexao implements ProdutoInterface{
             pstmt = conn.prepareStatement(remover);
 
             //SETANDO OS PARAMETROS
-            pstmt.setInt(1, produto.getId());
+            pstmt.setInt(1, produto_id);
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE MOSTRA A QUANTIDADE DE LINHAS afetadas linhas que foram
             //mexidas

@@ -16,6 +16,17 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 
+    <!-- ExcluirProdutoServlet -->
+
+    <servlet>
+        <servlet-name>excluir-produto</servlet-name>
+        <servlet-class>com.example.servlets.ExcluirProdutoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluir-produto</servlet-name>
+        <url-pattern>/excluir</url-pattern>
+    </servlet-mapping>
+
     <!-- DetalhePedidoServlet -->
 
     <servlet>
@@ -25,6 +36,17 @@
     <servlet-mapping>
         <servlet-name>detalhe-pedido</servlet-name>
         <url-pattern>/detalhe</url-pattern>
+    </servlet-mapping>
+
+    <!-- CadastrarProdutoServlet -->
+
+    <servlet>
+        <servlet-name>cadastrar-produto</servlet-name>
+        <servlet-class>com.example.servlets.CadastroProdutoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cadastrar-produto</servlet-name>
+        <url-pattern>/cadastrar_produto</url-pattern>
     </servlet-mapping>
 
     <!-- DetalhePedidoServlet -->

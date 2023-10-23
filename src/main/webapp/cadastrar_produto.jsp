@@ -19,14 +19,14 @@
             </div>
 
             <div class="nav_button">
-                <a href="dashboard.jsp" class="header_button" id="voltar_button">Voltar</a>
+                <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>
             </div>
 
         </div>
     </header>
     <main>
         <div class="div_cadastrar_produto">
-            <form action="dashboard.jsp">
+            <form action="cadastrar_produto">
                 <h1>Novo produto</h1>
                 <div class="produto_infos">
                     <div class="info">
@@ -46,13 +46,11 @@
                         <input type="number" class="input" name="preco" id="preco_id" step="0.50">
                     </div>
                 </div>
-                <label for="escolher_img" id="img">Clique para inserir uma imagem do produto.</label>
-                <input type="file" id="escolher_img" name="img" accept="image/*">
-                <input type="submit" id="confirmar_button" value="Cadastrar" onchange="readURL(this)">
-            </form>     
+                <label for="escolher_img" id="img">Insira a URL</label>
+
+            </form>
         </div>
     </main>
     <footer></footer>
-    <script src="js/cadastrar_produto.js"></script>
 </body>
 </html>

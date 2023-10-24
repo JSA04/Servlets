@@ -26,7 +26,7 @@
     </header>
     <main>
         <div class="div_cadastrar_produto">
-            <form action="cadastrar_produto">
+            <form action="cadastrar_produto" method="POST">
                 <h1>Novo produto</h1>
                 <div class="produto_infos">
                     <div class="info">
@@ -46,8 +46,9 @@
                         <input type="number" class="input" name="preco" id="preco_id" step="0.50">
                     </div>
                 </div>
-                <label for="escolher_img" id="img">Insira a URL</label>
-
+                <label for="escolher_img">Insira a Imagem (URL): </label>
+                <input type="text" id="escolher_img">
+                <input class="input" type="submit" id="confirmar_button" value="Cadastrar">
             </form>
         </div>
     </main>

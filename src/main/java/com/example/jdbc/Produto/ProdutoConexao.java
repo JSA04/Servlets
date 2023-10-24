@@ -41,7 +41,7 @@ public class ProdutoConexao implements ProdutoInterface{
             conectar();
             // Instanciando o objeto preparedStatement (pstmt)
 
-            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, quant, preco, id, data_validade, descricao) VALUES (?,?,?,?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, quant, preco, id, data_validade, descricao, fk_Adiministrador_id) VALUES (?,?,?,?,?,?,?)");
 
             // Setando o valor aos parâmetros
             pstmt.setString(1, produto.getNome());
@@ -50,6 +50,7 @@ public class ProdutoConexao implements ProdutoInterface{
             pstmt.setInt(4, produto.getId());
             pstmt.setDate(5, produto.getData_validade());
             pstmt.setString(6, produto.getDescricao());
+            pstmt.setInt(7, produto.getFk_Adiministrador_id());
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT
             pstmt.execute();

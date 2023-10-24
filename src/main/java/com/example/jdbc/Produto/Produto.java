@@ -4,26 +4,33 @@ import java.sql.Date;
 
 public class Produto {
     private String nome;
-    private int quantidade;
     private double preco;
+    private String descricao;
+    private Date data_validade;
     private int id;
+    private int quantidade;
     private int fk_Adiministrador_id;
     private String imagem;
-    private Date data_validade;
-    private String descricao;
+    private String categoria;
 
     //CONSTRUTOR
-    public Produto(String nome, int fk_Adiministrador_id, String imagem, int quantidade, double preco, Date data_validade, String descricao) {
+    public Produto(String nome, double preco, String descricao, Date data_validade, int id, int quantidade, String imagem, int fk_Adiministrador_id, String categoria) {
         this.nome = nome;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.data_validade = data_validade;
+        this.id = id;
+        this.quantidade = quantidade;
         this.imagem = imagem;
         this.fk_Adiministrador_id = fk_Adiministrador_id;
-        this.quantidade = quantidade;
-        this.preco = preco;
-        this.data_validade=data_validade;
-        this.descricao = descricao;
+        this.categoria = categoria;
     }
 
     //GETTERS
+    public int getId() {
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -42,10 +49,6 @@ public class Produto {
 
     public double getPreco() {
         return preco;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Date getData_validade() {

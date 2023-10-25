@@ -22,20 +22,26 @@ import java.sql.SQLException;
 public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processo(request, response);
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processo(request, response);
+    }
+
+    private void processo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         List<Map<String, String>> listaProdutos = new ArrayList<>();
 
         try {
             ResultSet produtos = new ProdutoConexao().buscar();
 
             while (produtos.next()){
-
                 Map<String, String> produto = new HashMap<>(3);
-
                 produto.put("id", produtos.getString("id"));
                 produto.put("nome", produtos.getString("nome"));
                 produto.put("imagem", produtos.getString("imagem"));
-
                 listaProdutos.add(produto);
             }
 
@@ -49,3 +55,4 @@ public class DashboardServlet extends HttpServlet {
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 }
+

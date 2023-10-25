@@ -24,7 +24,7 @@
     </header>
     <main>
         <div class="div_log_in_out div_cadastro">
-            <form action="dashboard.jsp" method="post" id="form_log_in_out">
+            <form action="cadastrar" method="POST" id="form_log_in_out">
                 <div class="form_head">
                     <img src="img/logo.svg" alt="Logo EqualityFood" id="logo">
                     <h1>Cadastre-se</h1>

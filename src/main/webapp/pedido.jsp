@@ -32,7 +32,7 @@
             <% List<Map<String, String>> pedidos = (ArrayList) (request.getAttribute("listaPedidos")); %>
             <% for (Map<String, String> pedido: pedidos) { %>
 
-            <a href="detalhe-pedido?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">
+            <a href="detalhe?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">
                 <h1 class="nome_cliente"><%= pedido.get("cliente") %></h1>
                 <div class="pedido_info">
                     <p>Total: <%= pedido.get("total") %></p>

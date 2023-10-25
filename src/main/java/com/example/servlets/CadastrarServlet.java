@@ -11,10 +11,11 @@ import java.util.Objects;
 import com.example.jdbc.Administrador.AdmConexao;
 import com.example.jdbc.Administrador.Administracao;
 
-@WebServlet(name = "Cadastrar", value = "/Cadastrar")
-public class Cadastrar extends HttpServlet {
+@WebServlet(name = "cadastrar", value = "/cadastrar")
+public class CadastrarServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
             //Obtendo as informações
             String nome = request.getParameter("nome_completo");

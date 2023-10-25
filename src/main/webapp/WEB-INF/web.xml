@@ -5,6 +5,17 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
+    <!-- CadastrarServlet -->
+
+    <servlet>
+        <servlet-name>cadastrar</servlet-name>
+        <servlet-class>com.example.servlets.CadastrarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cadastrar</servlet-name>
+        <url-pattern>/cadastrar</url-pattern>
+    </servlet-mapping>
+
     <!-- DashboardServlet -->
 
     <servlet>

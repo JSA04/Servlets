@@ -23,7 +23,7 @@
                 <h1 class="titulo">Pedidos</h1>
             </div>
             <div class="nav_button">
-                <a href="entrar.jsp" class="header_button" id="sair_button">Sair</a>
+                <a href="sair" class="header_button" id="sair_button">Sair</a>
                 <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>
             </div>
         </div>

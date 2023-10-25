@@ -8,6 +8,17 @@
     <!-- CadastrarServlet -->
 
     <servlet>
+        <servlet-name>entrar</servlet-name>
+        <servlet-class>com.example.servlets.EntrarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>entrar</servlet-name>
+        <url-pattern>/entrar</url-pattern>
+    </servlet-mapping>
+
+    <!-- CadastrarServlet -->
+
+    <servlet>
         <servlet-name>cadastrar</servlet-name>
         <servlet-class>com.example.servlets.CadastrarServlet</servlet-class>
     </servlet>
@@ -69,6 +80,17 @@
     <servlet-mapping>
         <servlet-name>pedidos</servlet-name>
         <url-pattern>/pedidos</url-pattern>
+    </servlet-mapping>
+
+    <!-- SairServlet -->
+
+    <servlet>
+        <servlet-name>sair</servlet-name>
+        <servlet-class>com.example.servlets.SairServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sair</servlet-name>
+        <url-pattern>/sair</url-pattern>
     </servlet-mapping>
 
 </web-app>

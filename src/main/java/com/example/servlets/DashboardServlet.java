@@ -33,15 +33,8 @@ public class DashboardServlet extends HttpServlet {
     protected void processo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(AutenticacaoServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processo(request, response);
-    }
-
-    private void processo(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         List<Map<String, String>> listaProdutos = new ArrayList<>();
 
         try {

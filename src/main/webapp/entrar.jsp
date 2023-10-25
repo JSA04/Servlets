@@ -25,7 +25,7 @@
     </header>
     <main>
         <div class="div_log_in_out">
-            <form action="dashboard" id="form_log_in_out">
+            <form action="entrar" id="form_log_in_out" method="POST">
                 <div class="form_head">
                     <img src="img/logo.svg" alt="Logo EqualityFood" id="logo">
                     <h1>Conecte-se</h1>

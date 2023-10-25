@@ -13,6 +13,10 @@
     min-height: 320px;
 }
 
+.produto p {
+    text-align: center;
+}
+
 .produto_img {
     border-radius: 20px;
     width: 100%;

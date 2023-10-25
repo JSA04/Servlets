@@ -14,6 +14,8 @@ public class ExcluirProdutoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
 
         new ProdutoConexao().softDelete(id_produto);

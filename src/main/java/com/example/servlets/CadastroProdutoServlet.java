@@ -17,7 +17,9 @@ public class CadastroProdutoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(AutenticacaoServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+
+        HttpSession session = request.getSession();
 
         String nome = request.getParameter("nome");
         String categoria = request.getParameter("categoria");
@@ -43,7 +45,7 @@ public class CadastroProdutoServlet extends HttpServlet {
             }
         }
 
-        Produto produto = new Produto(nome, preco, descricao, dataValidadeCorrigida, id, quantidade, linkImagem, 1, categoria);
+        Produto produto = new Produto(nome, preco, descricao, dataValidadeCorrigida, id, quantidade, linkImagem, (int) session.getAttribute("idUsuario"), categoria);
         new ProdutoConexao().inserir(produto);
 
         request.getRequestDispatcher("/dashboard").forward(request, response);

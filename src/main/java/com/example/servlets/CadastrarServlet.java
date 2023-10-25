@@ -16,6 +16,9 @@ public class CadastrarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+
         try {
             //Obtendo as informações
             String nome = request.getParameter("nome_completo");
@@ -60,9 +63,9 @@ public class CadastrarServlet extends HttpServlet {
             if (Objects.equals(senha, confirmarSenha)) {
                 //Adicionando no banco de dados
                 admConexao.inserir(administrador);
-                request.getRequestDispatcher("/dashboard").forward(request, response);
+                request.getRequestDispatcher("/entrar").forward(request, response);
             } else {
-                request.getRequestDispatcher("entrar.jsp").forward(request, response);
+                request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

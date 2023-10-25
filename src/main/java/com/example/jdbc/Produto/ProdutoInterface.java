@@ -7,6 +7,7 @@ public interface ProdutoInterface {
     void desconectar();
     boolean inserir(Produto pro);
     boolean alterar(Produto pro);
+    boolean softDelete(int id_produto);
     boolean remover(int id_produto);
     ResultSet buscarPorID(int id);
     ResultSet buscar();

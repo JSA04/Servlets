@@ -58,6 +58,7 @@ public class Produto {
     public String getDescricao() {
         return descricao;
     }
+    public String getCategoria() { return categoria; }
 
     //SETTERS
 

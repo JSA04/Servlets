@@ -30,6 +30,16 @@ public class DashboardServlet extends HttpServlet {
         processo(request, response);
     }
 
+    protected void processo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        if (!(AutenticacaoServlet.verificaAutenticacao(request, response))) return;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processo(request, response);
+    }
+
     private void processo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Map<String, String>> listaProdutos = new ArrayList<>();
@@ -38,11 +48,16 @@ public class DashboardServlet extends HttpServlet {
             ResultSet produtos = new ProdutoConexao().buscar();
 
             while (produtos.next()){
-                Map<String, String> produto = new HashMap<>(3);
-                produto.put("id", produtos.getString("id"));
-                produto.put("nome", produtos.getString("nome"));
-                produto.put("imagem", produtos.getString("imagem"));
-                listaProdutos.add(produto);
+
+                if (produtos.getBoolean("ativado")) {
+                    Map<String, String> produto = new HashMap<>(3);
+
+                    produto.put("id", produtos.getString("id"));
+                    produto.put("nome", produtos.getString("nome"));
+                    produto.put("imagem", produtos.getString("imagem"));
+
+                    listaProdutos.add(produto);
+                }
             }
 
         } catch (SQLException e) {
@@ -54,5 +69,6 @@ public class DashboardServlet extends HttpServlet {
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
+
 }
 

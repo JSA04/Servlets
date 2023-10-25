@@ -16,7 +16,7 @@ public class ExcluirProdutoServlet extends HttpServlet {
 
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
 
-        new ProdutoConexao().remover(id_produto);
+        new ProdutoConexao().softDelete(id_produto);
 
         request.getRequestDispatcher("/dashboard").forward(request, response);
     }

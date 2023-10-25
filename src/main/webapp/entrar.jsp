@@ -42,8 +42,8 @@
                         placeholder="Senha" required>
                     </div>
                 </div>
-                
-                <input type="submit" id="confirmar_button" value="Cadastrar">
+                <p class="msg"> ${msg} </p>
+                <input type="submit" id="confirmar_button" value="Entrar">
             </form>
         </div>
         <div class="div_background background">

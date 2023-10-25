@@ -41,16 +41,19 @@ public class ProdutoConexao implements ProdutoInterface{
             conectar();
             // Instanciando o objeto preparedStatement (pstmt)
 
-            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, quant, preco, id, data_validade, descricao, fk_Adiministrador_id) VALUES (?,?,?,?,?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, preco, descricao, data_validade, id, quant, imagem, fk_administrador_id, categoria, ativado) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
             // Setando o valor aos parâmetros
             pstmt.setString(1, produto.getNome());
-            pstmt.setInt(2, produto.getQuantidade());
-            pstmt.setDouble(3, produto.getPreco());
-            pstmt.setInt(4, produto.getId());
-            pstmt.setDate(5, produto.getData_validade());
-            pstmt.setString(6, produto.getDescricao());
-            pstmt.setInt(7, produto.getFk_Adiministrador_id());
+            pstmt.setDouble(2, produto.getPreco());
+            pstmt.setString(3, produto.getDescricao());
+            pstmt.setDate(4, produto.getData_validade());
+            pstmt.setInt(5, produto.getId());
+            pstmt.setInt(6, produto.getQuantidade());
+            pstmt.setString(7, produto.getImagem());
+            pstmt.setInt(8, produto.getFk_Adiministrador_id());
+            pstmt.setString(9, produto.getCategoria());
+            pstmt.setBoolean(10, true);
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT
             pstmt.execute();
@@ -90,6 +93,34 @@ public class ProdutoConexao implements ProdutoInterface{
             desconectar();
         }
     }
+    // SOFT DELETE
+
+    public boolean softDelete(int produto_id) {
+        conectar();
+        //VERIFICA SE O REGISTRO NÃO EXISTE
+        try {
+            String remover = "UPDATE PRODUTO SET ATIVADO = ? WHERE ID= ?";
+
+            //INSTANCIANDO O OBJETO PREPAREDSTATAMENT (PSTMT)
+            pstmt = conn.prepareStatement(remover);
+
+            //SETANDO OS PARAMETROS
+            pstmt.setBoolean(1, false);
+            pstmt.setInt(2, produto_id);
+
+            //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE MOSTRA A QUANTIDADE DE LINHAS afetadas linhas que foram
+            //mexidas
+            pstmt.executeUpdate();
+            return true;
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        } finally {
+            desconectar();
+        }
+    }
+
     //REMOVE PRODUTO
        public boolean remover(int produto_id) {
         conectar();
@@ -116,7 +147,7 @@ public class ProdutoConexao implements ProdutoInterface{
         }
     }
 
-    //MOSTRA OS PRODUTOS PELO ID ESCOLIDO
+    //MOSTRA OS PRODUTOS PELO ID ESCOLHIDO
     public ResultSet buscarPorID(int id) {
         conectar();
         try {

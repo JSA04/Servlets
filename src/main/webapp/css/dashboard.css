@@ -29,6 +29,7 @@
     color: #FFF;
     font-weight: 600;
     border: none;
+    cursor: pointer;
 }
 
 .produto_button:active {

@@ -23,7 +23,10 @@ public class PedidosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request))) {
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            return;
+        }
 
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
         List<Map<String, String>> listaPedidos = new ArrayList<>();

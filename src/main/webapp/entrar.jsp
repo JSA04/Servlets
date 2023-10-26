@@ -42,7 +42,8 @@
                         placeholder="Senha" required>
                     </div>
                 </div>
-                <p class="msg"> ${msg} </p>
+                <p class="${classMsg}"> ${msg} </p>
+                <% request.getSession().setAttribute("msg", ""); %>
                 <input type="submit" id="confirmar_button" value="Entrar">
             </form>
         </div>

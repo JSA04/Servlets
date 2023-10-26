@@ -17,7 +17,12 @@ public class CadastrarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+        if (EntrarServlet.verificaAutenticacao(request)) {
+            request.getRequestDispatcher("/dashboard").forward(request, response);
+            return;
+        }
+
+        HttpSession session = request.getSession();
 
         try {
             //Obtendo as informações
@@ -31,29 +36,20 @@ public class CadastrarServlet extends HttpServlet {
             //Criando objeto AdmConexão
             AdmConexao admConexao = new AdmConexao();
 
-            //Método para pegar o id e adicionar mais 1
+            //Método para pegar o ultimo id e adicionar mais 1
             ResultSet rs1= admConexao.buscar();
             if(rs1!=null){
                 try{
-                    if(!rs1.isBeforeFirst()) {
-                        System.out.println("Não foi encontrado");
-                    }
-                    else {
-                        while (rs1.next()) {
-                            novoId = rs1.getInt("id");
-                            if (novoId > maior) {
-                                maior = novoId;
-                            }
+                    while (rs1.next()) {
+                        novoId = rs1.getInt("id");
+                        if (novoId > maior) {
+                            maior = novoId;
                         }
-                        maior++;
                     }
+                    maior++;
                 }catch (SQLException sqle){
                     sqle.printStackTrace();
-                    System.out.println("Não foi encontrado");
                 }
-            }
-            else {
-                System.out.println("Erro ao tentar selecionar!!!");
             }
 
             //Criando objeto administrador com suas informações
@@ -65,6 +61,8 @@ public class CadastrarServlet extends HttpServlet {
                 admConexao.inserir(administrador);
                 request.getRequestDispatcher("/entrar").forward(request, response);
             } else {
+                session.setAttribute("classMsg", "erroMsg");
+                session.setAttribute("msg", "As senhas não conferem! ");
                 request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
             }
         } catch (Exception e) {

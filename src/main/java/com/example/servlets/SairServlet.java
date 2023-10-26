@@ -27,6 +27,8 @@ public class SairServlet extends HttpServlet {
 
             session.setAttribute("usuario", null);
             session.setAttribute("idUsuario", null);
+            session.setAttribute("classMsg", "sucessoMsg");
+            session.setAttribute("msg", "Você foi deslogado com sucesso!");
 
             request.getRequestDispatcher("/entrar.jsp").forward(request, response);
         }

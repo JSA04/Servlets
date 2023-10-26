@@ -33,7 +33,10 @@ public class DashboardServlet extends HttpServlet {
     protected void processo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request))) {
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            return;
+        }
 
         List<Map<String, String>> listaProdutos = new ArrayList<>();
 

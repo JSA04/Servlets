@@ -5,16 +5,21 @@
     max-width: 90%;
     max-height: 76vh;
     overflow-y: auto;
-    gap: 75px
+    gap: 60px
 }
 
 .produto {
     min-width: 250px;
     min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .produto p {
     text-align: center;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .produto_img {

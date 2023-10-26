@@ -17,9 +17,12 @@ public class CadastroProdutoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
-
         HttpSession session = request.getSession();
+
+        if (!(EntrarServlet.verificaAutenticacao(request))) {
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            return;
+        }
 
         String nome = request.getParameter("nome");
         String categoria = request.getParameter("categoria");
@@ -31,7 +34,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         String linkImagem = request.getParameter("imagem_url");
         String descricao = request.getParameter("descricao");
 
-        int id = new Random().nextInt(10);;
+        int id = new Random().nextInt(10);
         boolean id_igual = true;
         while (id_igual) {
             try {

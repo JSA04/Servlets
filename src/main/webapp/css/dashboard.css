@@ -13,7 +13,11 @@
     min-height: 320px;
 }
 
-.produto p {
+.produto_titulo {
+    font-family: sans-serif;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 900;
     text-align: center;
 }
 

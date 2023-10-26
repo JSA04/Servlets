@@ -27,6 +27,7 @@ public class SairServlet extends HttpServlet {
 
             session.setAttribute("usuario", null);
             session.setAttribute("idUsuario", null);
+            session.setAttribute("success_msg", "Sua conta foi desconectada com sucesso!");
 
             request.getRequestDispatcher("/entrar.jsp").forward(request, response);
         }

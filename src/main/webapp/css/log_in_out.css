@@ -92,6 +92,14 @@
     right: 0;
 }
 
+#error_msg {
+    color: red;
+}
+
+#success_msg {
+    color: green;
+}
+
 /* Media-Query com width */
 @media screen and (max-width: 1800px) {
     .background {

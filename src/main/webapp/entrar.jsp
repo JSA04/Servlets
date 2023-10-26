@@ -42,7 +42,8 @@
                         placeholder="Senha" required>
                     </div>
                 </div>
-                <p class="msg"> ${msg} </p>
+                <p id="success_msg"> ${success_msg} </p>
+                <p id="error_msg"> ${error_msg} </p>
                 <input type="submit" id="confirmar_button" value="Entrar">
             </form>
         </div>

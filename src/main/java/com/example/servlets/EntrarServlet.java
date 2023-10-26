@@ -62,6 +62,7 @@ public class EntrarServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("usuario") == null) {
+            request.setAttribute("msg", "Sua sessão expirou!");
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
             return false;
         } else return true;

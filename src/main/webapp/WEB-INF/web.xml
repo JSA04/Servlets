@@ -75,7 +75,7 @@
 
     <servlet>
         <servlet-name>pedidos</servlet-name>
-        <servlet-class>com.example.servlets.PedidosServlet</servlet-class>
+        <servlet-class>com.example.servlets.DetalheProdutoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>pedidos</servlet-name>

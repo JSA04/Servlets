@@ -47,6 +47,17 @@ main {
     border-color: #F6A11D;
 }
 
+/* Mensagens de aviso nas telas de cadastro e entrar. */
+
+.erro_msg {
+    padding-top: 15px;
+    color: red;
+}
+
+.sucesso_msg {
+    padding-top: 15px;
+    color: green;
+}
 
 @media screen and (max-width: 800px) {
     * {

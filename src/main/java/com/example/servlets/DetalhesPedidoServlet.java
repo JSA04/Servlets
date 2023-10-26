@@ -24,7 +24,10 @@ public class DetalhesPedidoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request))) {
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            return;
+        }
 
         int id_pedido = Integer.parseInt(request.getParameter("id_pedido"));
         String cliente = "";

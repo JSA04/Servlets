@@ -55,6 +55,8 @@
                     <input type="checkbox" name="termos" id="termos_id" required>
                     <p>Li e concordo com os Termos e Condições de Uso. Os termos estão disponíveis para consulta no app.</p>
                 </div>
+                <p class="${classMsg}"> ${msg} </p>
+                <% request.getSession().setAttribute("msg", ""); %>
                 <input type="submit" id="confirmar_button" value="Cadastrar">
             </form>
         </div>

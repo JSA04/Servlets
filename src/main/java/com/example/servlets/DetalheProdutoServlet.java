@@ -19,11 +19,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet(name = "pedidos", value = "/pedidos")
-public class PedidosServlet extends HttpServlet {
+public class DetalheProdutoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!(EntrarServlet.verificaAutenticacao(request, response))) return;
+        if (!(EntrarServlet.verificaAutenticacao(request))) {
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            return;
+        }
 
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
         List<Map<String, String>> listaPedidos = new ArrayList<>();
@@ -54,6 +57,6 @@ public class PedidosServlet extends HttpServlet {
         request.setAttribute("id_produto", id_produto);
         request.setAttribute("listaPedidos", listaPedidos);
 
-        request.getRequestDispatcher("pedido.jsp").forward(request, response);
+        request.getRequestDispatcher("detalhe_produto.jsp").forward(request, response);
     }
 }

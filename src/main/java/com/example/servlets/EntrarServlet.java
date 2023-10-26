@@ -13,7 +13,16 @@ import jakarta.servlet.annotation.*;
 public class EntrarServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws IOException, ServletException {
-        boolean encontrado = false;
+
+        if (verificaAutenticacao(request)) {
+            request.getRequestDispatcher("/dashboard").forward(request, response);
+            return;
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute("classMsg", "erroMsg");
+
+        boolean encontrado = false, senha_confere = false;
         int id = 0;
         AdmConexao admConexao = new AdmConexao();
         String user = request.getParameter("user");
@@ -28,12 +37,11 @@ public class EntrarServlet extends HttpServlet {
             while (adms.next()) {
                 //VERIFICA SE USUARIO OU EMAIL EXISTEM NO BANCO
                 if (adms.getString("usuario").equals(user) || adms.getString("email").equals(user)) {
+                    encontrado = true;
                     if (adms.getString("senha").equals(senha)) {
-                        encontrado = true;
                         id = adms.getInt("id");
+                        senha_confere = true;
                         break;
-                    } else {
-                        encontrado = false;
                     }
                 }
             }
@@ -42,10 +50,14 @@ public class EntrarServlet extends HttpServlet {
             sqle.printStackTrace();
         }
 
-        if (encontrado){
+        if (encontrado && senha_confere){
             autenticar(request, user, id);
             request.getRequestDispatcher("/dashboard").forward(request, response);
+        } else if (encontrado) {
+            session.setAttribute("msg", "Senha incorreta! ");
+            request.getRequestDispatcher("entrar.jsp").forward(request, response);
         } else {
+            session.setAttribute("msg", "Usuário não encontrado! ");
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
         }
     }
@@ -56,14 +68,13 @@ public class EntrarServlet extends HttpServlet {
         session.setAttribute("idUsuario", id);
     }
 
-    public static boolean verificaAutenticacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public static boolean verificaAutenticacao(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
 
         if (session.getAttribute("usuario") == null) {
-            request.setAttribute("msg", "Sua sessão expirou!");
-            request.getRequestDispatcher("entrar.jsp").forward(request, response);
+            session.setAttribute("classMsg", "erroMsg");
+            session.setAttribute("msg", "Sua sessão expirou! ");
             return false;
         } else return true;
 

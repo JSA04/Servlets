@@ -75,7 +75,7 @@ public class EntrarServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("usuario") == null) {
-            session.setAttribute("classMsg", "erroMsg");
+            session.setAttribute("classMsg", "erro_msg");
             session.setAttribute("msg", "Sua sessão expirou! ");
             return false;
         } else return true;

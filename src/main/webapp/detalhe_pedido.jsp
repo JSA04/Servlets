@@ -22,9 +22,6 @@
             <div>
                 <h1 class="titulo">Pedidos</h1>
             </div>
-            <div>
-                <h1 class="usuario">Úsuario: <%= request.getSession().getAttribute("usuario") %></h1>
-            </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
                 <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>

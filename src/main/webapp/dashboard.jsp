@@ -21,9 +21,6 @@
             <div>
                 <h1 class="titulo">Produtos</h1>
             </div>
-            <div>
-                <h1 class="usuario">Úsuario: <%= request.getSession().getAttribute("usuario") %></h1>
-            </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
                 <a href="cadastrar_produto.jsp" class="header_button" id="add_produto_button">Adicionar Produto</a>

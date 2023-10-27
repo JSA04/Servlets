@@ -21,6 +21,9 @@
             <div>
                 <h1 class="titulo">Produtos</h1>
             </div>
+            <div>
+                <h1 class="usuario">Úsuario: <%= request.getSession().getAttribute("usuario") %></h1>
+            </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
                 <a href="cadastrar_produto.jsp" class="header_button" id="add_produto_button">Adicionar Produto</a>
@@ -35,7 +38,7 @@
 
             <div class="produto" id="produto_<%= produto.get("id") %>">
                 <p class="produto_titulo"><%= produto.get("nome") %></p>
-                <a href="pedidos?id_produto=<%= produto.get("id") %>">
+                <a href="detalhe_produto?id_produto=<%= produto.get("id") %>">
                     <% if (produto.get("imagem") == null || produto.get("imagem").equals("")) { %>
                     <div class="produto_img" style="background-image: url('img/produto.svg')"></div>
                     <% } else { %>

@@ -55,13 +55,22 @@ public class CadastrarServlet extends HttpServlet {
             //Criando objeto administrador com suas informações
             Administracao administrador = new Administracao(nome, email, senha, maior);
 
+
             //Verificando se senhas são iguais
             if (Objects.equals(senha, confirmarSenha)) {
-                //Adicionando no banco de dados
-                admConexao.inserir(administrador);
-                request.getRequestDispatcher("/entrar").forward(request, response);
+                if (!(admConexao.verificaExistencia(administrador))){
+                    //Adicionando no banco de dados
+                    admConexao.inserir(administrador);
+                    request.setAttribute("user", nome);
+                    request.setAttribute("senha", senha);
+                    request.getRequestDispatcher("/entrar").forward(request, response);
+                } else {
+                    session.setAttribute("classMsg", "erro_msg");
+                    session.setAttribute("msg", "Este usuario já existe! ");
+                    request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
+                }
             } else {
-                session.setAttribute("classMsg", "erroMsg");
+                session.setAttribute("classMsg", "erro_msg");
                 session.setAttribute("msg", "As senhas não conferem! ");
                 request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
             }

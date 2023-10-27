@@ -150,5 +150,28 @@ public class AdmConexao implements AdmInterface{
             desconectar();
         }
     }
+
+    public boolean verificaExistencia(Administracao adm) {
+        conectar();
+        try {
+            // Instanciando o objeto preparedStatement (pstmt)
+            pstmt = conn.prepareStatement("SELECT * FROM ADMINISTRADOR WHERE USUARIO = ? OR EMAIL = ?");
+
+            pstmt.setString(1, adm.getUsuario());
+            pstmt.setString(2, adm.getEmail());
+
+            // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
+            rs = pstmt.executeQuery();
+
+            return rs.isBeforeFirst();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        } finally {
+            desconectar();
+        }
+    }
+
 }
 

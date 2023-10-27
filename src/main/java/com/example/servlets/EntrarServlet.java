@@ -20,13 +20,15 @@ public class EntrarServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("classMsg", "erroMsg");
+        session.setAttribute("classMsg", "erro_msg");
 
         boolean encontrado = false, senha_confere = false;
         int id = 0;
         AdmConexao admConexao = new AdmConexao();
         String user = request.getParameter("user");
+        if (user == null) user = (String) request.getAttribute("user");
         String senha = request.getParameter("senha");
+        if (senha == null) senha = (String) request.getAttribute("senha");
 
         //VERIFICA SE TEM ALGO NO BANCO
         try {

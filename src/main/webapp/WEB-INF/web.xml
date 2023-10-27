@@ -71,15 +71,15 @@
         <url-pattern>/cadastrar_produto</url-pattern>
     </servlet-mapping>
 
-    <!-- DetalhePedidoServlet -->
+    <!-- DetalheProdutoServlet -->
 
     <servlet>
-        <servlet-name>pedidos</servlet-name>
+        <servlet-name>detalhe-produto</servlet-name>
         <servlet-class>com.example.servlets.DetalheProdutoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>pedidos</servlet-name>
-        <url-pattern>/pedidos</url-pattern>
+        <servlet-name>detalhe-produto</servlet-name>
+        <url-pattern>/detalhe_produto</url-pattern>
     </servlet-mapping>
 
     <!-- SairServlet -->

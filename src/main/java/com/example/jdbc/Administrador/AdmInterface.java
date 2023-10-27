@@ -10,4 +10,5 @@ public interface AdmInterface {
     boolean remover(Administracao adm);
     ResultSet buscarPorID(int id);
     ResultSet buscar();
+    boolean verificaExistencia(Administracao adm);
 }

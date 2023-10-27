@@ -10,7 +10,7 @@ header {
     justify-content: center;
   }
 
-.titulo {
+.titulo, .usuario {
     color: white;
     font-weight: 600;
     font-size: 25px;

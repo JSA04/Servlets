@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt_br">
@@ -21,6 +22,9 @@
             <div>
                 <h1 class="titulo">Pedidos</h1>
             </div>
+            <div>
+                <h1 class="usuario">Úsuario: <%= request.getSession().getAttribute("usuario") %></h1>
+            </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
                 <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>
@@ -29,27 +33,44 @@
     </header>
     <main>
         <div id="produto">
+
+            <% HashMap produto = (HashMap) request.getAttribute("produto"); %>
+
             <div id="detalhes_produto">
-                <div id="produto_img"></div>
+
+                <% if (produto.get("imagem") == null || produto.get("imagem").equals("")) { %>
+                <div id="produto_img" style="background-image: url('img/produto.svg')"></div>
+                <% } else { %>
+                <div id="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
+                <% } %>
+
                 <div id="detalhes">
-                    <p id="produto_nome">Carne</p>
+                    <p id="produto_nome"><%= produto.get("nome") %></p>
                     <div class="dados">
-                        <p>Quantidade: 22</p>
-                        <p>R$ 19,99</p>
+                        <p>Quantidade: <%= produto.get("quantidade") %></p>
+                        <p><%= produto.get("preco") %></p>
                     </div>
                     <div class="dados">
-                        <p>Categoria: Bovina</p>
-                        <p>Validade: 04/04/2024</p>
+                        <p>Categoria: <%= produto.get("categoria") %></p>
+                        <p>Validade: <%= produto.get("validade") %></p>
                     </div>
+                    <% if (!produto.get("descricao").equals("")) { %>
                     <p style="font-weight: bold;">Descrição</p>
-                    <p id="produto_desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum harum delectus corporis incidunt nemo earum, soluta excepturi suscipit dolor cumque perferendis odio rerum illo quaerat vitae neque. Ea, obcaecati veritatis!</p>
-                    <a href="excluir">
+                    <p id="produto_desc"><%= produto.get("descricao") %></p>
+                    <% } %>
+                    <a href="excluir?id_produto=${id_produto}">
                         <button id="excluir_button">Excluir</button>
                     </a>
                 </div>
             </div>
             <div id="pedidos">
                 <% List<Map<String, String>> pedidos = (ArrayList) (request.getAttribute("listaPedidos")); %>
+
+                <% if (pedidos.isEmpty()) { %>
+                <p>Não há pedidos desse produto. </p>
+                <% } %>
+
+
                 <% for (Map<String, String> pedido: pedidos) { %>
 
                 <a href="detalhe?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">

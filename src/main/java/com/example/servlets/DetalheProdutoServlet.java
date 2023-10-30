@@ -23,10 +23,11 @@ import java.sql.SQLException;
 @WebServlet(name = "produtos", value = "/detalhe-produto")
 public class DetalheProdutoServlet extends HttpServlet {
 
-
+    //sempre que a requisição que você faz não altere o estado do servidor, como uma consulta, uma busca e etc
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //se o login não for null ele vai para a tela de entrar.jsp
         if (!(EntrarServlet.verificaAutenticacao(request))) {
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
             return;

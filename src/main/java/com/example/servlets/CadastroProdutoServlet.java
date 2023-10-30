@@ -14,16 +14,21 @@ import java.util.Random;
 
 @WebServlet(name = "cadastrar-produto", value = "/cadastrar_produto")
 public class CadastroProdutoServlet extends HttpServlet {
+
+    //solicitar que o servidor web aceite os dados anexados no corpo da mensagem de requisição para armazenamento.
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //cria uma sessão se um já não existe para este usuário
         HttpSession session = request.getSession();
 
+        //se o login não for null ele vai para a tela de deshboard
         if (!(EntrarServlet.verificaAutenticacao(request))) {
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
             return;
         }
 
+        //cria as variavei guardando o que o usuario responder
         String nome = request.getParameter("nome");
         String categoria = request.getParameter("categoria");
         double preco = Double.parseDouble(String.valueOf(request.getParameter("preco")));
@@ -34,6 +39,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         String linkImagem = request.getParameter("imagem_url");
         String descricao = request.getParameter("descricao");
 
+        //gera um id que não existe para por na tabela
         int id = new Random().nextInt(10);
         boolean id_igual = true;
         while (id_igual) {
@@ -48,9 +54,11 @@ public class CadastroProdutoServlet extends HttpServlet {
             }
         }
 
+        //objeto
         Produto produto = new Produto(nome, preco, descricao, dataValidadeCorrigida, id, quantidade, linkImagem, (int) session.getAttribute("idUsuario"), categoria);
         new ProdutoConexao().inserir(produto);
 
+        //no fim do cadastro ele vai para a tela dashboard
         request.getRequestDispatcher("/dashboard").forward(request, response);
     }
 }

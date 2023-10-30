@@ -34,15 +34,22 @@
                     </div>
                     <div class="info">
                         <label for="categoria_id">Categoria</label>
-                        <input type="text" class="input" name="categoria" id="categoria_id" required>
+                        <select required id="categoria_id" class="input">
+                            <option>Não Pereciveis</option>
+                            <option>Congelados</option>
+                            <option>Legumes</option>
+                            <option>Carne suína</option>
+                            <option>Frango</option>
+                            <option>Carne bovina</option>
+                        </select>
                     </div>
                     <div class="info">
                         <label for="quantidade_id">Quantidade</label>
-                        <input type="number" class="input" name="quantidade" id="quantidade_id" required>
+                        <input type="number" min="1" class="input" name="quantidade" id="quantidade_id" required>
                     </div>
                     <div class="info">
                         <label for="preco_id">Preço</label>
-                        <input type="number" class="input" name="preco" id="preco_id" step="0.1" required>
+                        <input type="number" min="0" class="input" name="preco" id="preco_id" step="0.01" required>
                     </div>
                 </div>
                 <label for="data_validade_id">Data de validade: </label>

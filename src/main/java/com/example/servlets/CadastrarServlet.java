@@ -14,14 +14,17 @@ import com.example.jdbc.Administrador.Administracao;
 @WebServlet(name = "cadastrar", value = "/cadastrar")
 public class CadastrarServlet extends HttpServlet {
     @Override
+    //solicitar que o servidor web aceite os dados anexados no corpo da mensagem de requisição para armazenamento.
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //se o login não for null ele vai para a tela de deshboard
         if (EntrarServlet.verificaAutenticacao(request)) {
             request.getRequestDispatcher("/dashboard").forward(request, response);
             return;
         }
 
+        //cria uma sessão se um já não existe para este usuário
         HttpSession session = request.getSession();
 
         try {

@@ -30,28 +30,34 @@ public class DashboardServlet extends HttpServlet {
         processo(request, response);
     }
 
+
     protected void processo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //se a autenticação não funcionar o código redireciona o usuário para a página "entrar.jsp"
         if (!(EntrarServlet.verificaAutenticacao(request))) {
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
             return;
         }
 
+        //lista que vai armazenar informações sobre produtos.
         List<Map<String, String>> listaProdutos = new ArrayList<>();
 
         try {
             ResultSet produtos = new ProdutoConexao().buscar();
 
+            //busca produtos no banco de dados
             while (produtos.next()){
 
                 if (produtos.getBoolean("ativado")) {
+                    //armazenar informações sobre o produto, como seu ID, nome e imagem
                     Map<String, String> produto = new HashMap<>(3);
 
                     produto.put("id", produtos.getString("id"));
                     produto.put("nome", produtos.getString("nome"));
                     produto.put("imagem", produtos.getString("imagem"));
 
+                    //armazenha na lista
                     listaProdutos.add(produto);
                 }
             }

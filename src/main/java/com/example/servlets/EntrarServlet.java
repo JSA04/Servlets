@@ -11,6 +11,8 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "entrar", value = "/entrar")
 public class EntrarServlet extends HttpServlet {
+
+    //solicitar que o servidor web aceite os dados anexados no corpo da mensagem de requisição para armazenamento.
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws IOException, ServletException {
 
@@ -70,8 +72,10 @@ public class EntrarServlet extends HttpServlet {
         session.setAttribute("idUsuario", id);
     }
 
+    //verifica se o usuario existe
     public static boolean verificaAutenticacao(HttpServletRequest request) {
 
+        //cria uma sessão se um já não existe para este usuário
         HttpSession session = request.getSession();
 
         if (session.getAttribute("usuario") == null) {

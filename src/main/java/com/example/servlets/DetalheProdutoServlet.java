@@ -22,6 +22,8 @@ import java.sql.SQLException;
 
 @WebServlet(name = "produtos", value = "/detalhe-produto")
 public class DetalheProdutoServlet extends HttpServlet {
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

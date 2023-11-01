@@ -34,13 +34,13 @@
                     </div>
                     <div class="info">
                         <label for="categoria_id">Categoria</label>
-                        <select required id="categoria_id" class="input">
-                            <option>Não Perecíveis</option>
-                            <option>Congelados</option>
-                            <option>Legumes</option>
-                            <option>Carne Suína</option>
-                            <option>Frango</option>
-                            <option>Carne Bovina</option>
+                        <select required name="categoria" id="categoria_id" class="input">
+                            <option value="Não Perecíveis">Não Perecíveis</option>
+                            <option value="Congelados">Congelados</option>
+                            <option value="Legumes">Legumes</option>
+                            <option value="Carne Suína">Carne Suína</option>
+                            <option value="Frango">Frango</option>
+                            <option value="Carne Bovina">Carne Bovina</option>
                         </select>
                     </div>
                     <div class="info">

@@ -9,12 +9,12 @@ public class Produto {
     private Date data_validade;
     private int id;
     private int quantidade;
-    private int fk_Adiministrador_id;
+    private String fk_administrador_cpf;
     private String imagem;
     private String categoria;
 
     //CONSTRUTOR
-    public Produto(String nome, double preco, String descricao, Date data_validade, int id, int quantidade, String imagem, int fk_Adiministrador_id, String categoria) {
+    public Produto(String nome, double preco, String descricao, Date data_validade, int id, int quantidade, String imagem, String fk_administrador_cpf, String categoria) {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
@@ -22,7 +22,7 @@ public class Produto {
         this.id = id;
         this.quantidade = quantidade;
         this.imagem = imagem;
-        this.fk_Adiministrador_id = fk_Adiministrador_id;
+        this.fk_administrador_cpf = fk_administrador_cpf;
         this.categoria = categoria;
     }
 
@@ -35,8 +35,8 @@ public class Produto {
         return nome;
     }
 
-    public int getFk_Adiministrador_id() {
-        return fk_Adiministrador_id;
+    public String fk_administrador_cpf() {
+        return fk_administrador_cpf;
     }
 
     public String getImagem() {

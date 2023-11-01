@@ -1,6 +1,8 @@
 package com.example.jdbc.Produto;
 
 
+import com.sun.jdi.connect.Connector;
+
 import java.sql.*;
 
 public class ProdutoConexao implements ProdutoInterface{
@@ -41,7 +43,7 @@ public class ProdutoConexao implements ProdutoInterface{
             conectar();
             // Instanciando o objeto preparedStatement (pstmt)
 
-            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, preco, descricao, data_validade, id, quant, imagem, fk_administrador_id, categoria, ativado) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO PRODUTO (nome, preco, descricao, data_validade, id, quant, imagem, fk_administrador_cpf, categoria, ativado) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
             // Setando o valor aos parâmetros
             pstmt.setString(1, produto.getNome());
@@ -51,7 +53,7 @@ public class ProdutoConexao implements ProdutoInterface{
             pstmt.setInt(5, produto.getId());
             pstmt.setInt(6, produto.getQuantidade());
             pstmt.setString(7, produto.getImagem());
-            pstmt.setInt(8, produto.getFk_Adiministrador_id());
+            pstmt.setString(8, produto.fk_administrador_cpf());
             pstmt.setString(9, produto.getCategoria());
             pstmt.setBoolean(10, true);
 
@@ -172,7 +174,7 @@ public class ProdutoConexao implements ProdutoInterface{
     }
 
     //MOSTRA OS PRODUTOS
-    public ResultSet buscar() {
+    public ResultSet pesquisar() {
         conectar();
         try {
             // Instanciando o objeto preparedStatement (pstmt)
@@ -191,4 +193,85 @@ public class ProdutoConexao implements ProdutoInterface{
             desconectar();
         }
     }
+
+    public ResultSet pesquisar(String nome) {
+        conectar();
+        try {
+            // Instanciando o objeto preparedStatement (pstmt)
+            pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE " +
+                        "UPPER(nome) LIKE UPPER(CONCAT('%', ?, '%')) OR " +
+                        "UPPER(categoria) LIKE UPPER(CONCAT('%', ?, '%')) OR " +
+                        "UPPER(descricao) LIKE UPPER(CONCAT('%', ?, '%')) ");
+
+            pstmt.setString(1, nome);
+            pstmt.setString(2, nome);
+            pstmt.setString(3, nome);
+
+            // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
+            rs = pstmt.executeQuery();
+
+            // Retornando o ResultSet
+            return rs;
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        } finally {
+            desconectar();
+        }
+    }
+    public ResultSet pesquisar(Date data) {
+        conectar();
+        try {
+            // Instanciando o objeto preparedStatement (pstmt)
+            pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE" +
+                    "UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
+                    "UPPER(categoria) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
+                    "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%')) AND " +
+                    "DATA_VALIDADE = ?");
+
+            pstmt.setDate(1, data);
+
+            // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
+            rs = pstmt.executeQuery();
+
+            // Retornando o ResultSet
+            return rs;
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        } finally {
+            desconectar();
+        }
+    }
+    public ResultSet pesquisar(String nome, Date data) {
+        conectar();
+        try {
+            // Instanciando o objeto preparedStatement (pstmt)
+            pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE " +
+                    "UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
+                    "UPPER(categoria) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
+                    "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%')) AND " +
+                    "DATA_VALIDADE = ?");
+
+            pstmt.setString(1, nome);
+            pstmt.setString(2, nome);
+            pstmt.setString(3, nome);
+            pstmt.setDate(4, data);
+
+            // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
+            rs = pstmt.executeQuery();
+
+            // Retornando o ResultSet
+            return rs;
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return null;
+        } finally {
+            desconectar();
+        }
+    }
+
 }

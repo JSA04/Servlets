@@ -28,6 +28,17 @@
         </div>
     </header>
     <main>
+        <form id="busca" method="GET" action="dashboard">
+            <div>
+                <label for="busca_input_id">Buscar: </label>
+                <input type="text" name="busca_input" id="busca_input_id" class="input" placeholder="Palavra-Chave">
+            </div>
+            <div>
+                <label for="data_input_id">Filtrar por data: </label>
+                <input type="date" name="data_input" id="data_input_id" class="input">
+                <input type="submit" value="Buscar" id="buscar_button">
+            </div>
+        </form>
         <div id="produtos">
 
             <% List<Map<String, String>> produtos = (ArrayList) (request.getAttribute("listaProdutos")); %>
@@ -36,7 +47,7 @@
             <div class="produto" id="produto_<%= produto.get("id") %>">
                 <p class="produto_titulo"><%= produto.get("nome") %></p>
                 <a href="detalhe_produto?id_produto=<%= produto.get("id") %>">
-                    <% if (produto.get("imagem") == null || produto.get("imagem").equals("")) { %>
+                    <% if (produto.get("imagem") == null || produto.get("imagem").isEmpty()) { %>
                     <div class="produto_img" style="background-image: url('img/produto.svg')"></div>
                     <% } else { %>
                     <div class="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
@@ -49,11 +60,17 @@
 
             <% } %>
 
-            <div class="produto">
-                <a href="cadastrar_produto.jsp">
-                    <div id="add_button"></div>
-                </a>
-            </div>
+            <% if (produtos.isEmpty()) { %>
+                <p>Não há pedidos desse produto. </p>
+            <% } %>
+
+            <% if (!(boolean) (request.getAttribute("pesquisa"))) { %>
+                <div class="produto">
+                    <a href="cadastrar_produto.jsp">
+                        <div id="add_button"></div>
+                    </a>
+                </div>
+            <% } %>
         </div>
     </main>
     <footer></footer>

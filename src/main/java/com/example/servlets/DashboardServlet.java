@@ -1,5 +1,7 @@
 package com.example.servlets;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -43,22 +45,49 @@ public class DashboardServlet extends HttpServlet {
         //lista que vai armazenar informações sobre produtos.
         List<Map<String, String>> listaProdutos = new ArrayList<>();
 
+        boolean pesquisa;
         try {
-            ResultSet produtos = new ProdutoConexao().buscar();
+            ResultSet produtos;
+            pesquisa = true;
+            Date filtroData = null;
+            String filtroNome = request.getParameter("busca_input");
+            String filtroDataStr = request.getParameter("data_input");
+
+            if (filtroDataStr != null) {
+                try {
+                    String[] dv = filtroDataStr.split("-");
+                    filtroData = Date.valueOf(LocalDate.of(Integer.parseInt(dv[0]), Integer.parseInt(dv[1]), Integer.parseInt(dv[2])));
+                } catch (NumberFormatException err) {
+                    filtroData = null;
+                }
+            }
+
+            if (filtroNome.isEmpty()) filtroNome = null;
+
+            if (filtroNome != null&& filtroData != null)
+                produtos = new ProdutoConexao().pesquisar(filtroNome, filtroData);
+            else if (filtroNome != null) produtos = new ProdutoConexao().pesquisar(filtroNome);
+            else if (filtroData != null) produtos = new ProdutoConexao().pesquisar(filtroData);
+            else {
+                pesquisa = false;
+                produtos = new ProdutoConexao().pesquisar();
+            }
 
             //busca produtos no banco de dados
-            while (produtos.next()){
+            if (produtos != null) {
+                while (produtos.next()) {
 
-                if (produtos.getBoolean("ativado")) {
-                    //armazenar informações sobre o produto, como seu ID, nome e imagem
-                    Map<String, String> produto = new HashMap<>(3);
+                    if (produtos.getBoolean("ativado")) {
+                        //armazenar informações sobre o produto, como seu ID, nome e imagem
+                        Map<String, String> produto = new HashMap<>(3);
 
-                    produto.put("id", produtos.getString("id"));
-                    produto.put("nome", produtos.getString("nome"));
-                    produto.put("imagem", produtos.getString("imagem"));
+                        produto.put("id", produtos.getString("id"));
+                        produto.put("nome", produtos.getString("nome"));
+                        produto.put("imagem", produtos.getString("imagem"));
 
-                    //armazenha na lista
-                    listaProdutos.add(produto);
+                        //armazenha na lista
+                        listaProdutos.add(produto);
+                    }
                 }
             }
 
@@ -68,6 +97,7 @@ public class DashboardServlet extends HttpServlet {
 
         request.setAttribute("titulo", "Produtos");
         request.setAttribute("listaProdutos", listaProdutos);
+        request.setAttribute("pesquisa", pesquisa);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }

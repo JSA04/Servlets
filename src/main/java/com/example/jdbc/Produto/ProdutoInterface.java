@@ -1,5 +1,6 @@
 package com.example.jdbc.Produto;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 
 public interface ProdutoInterface {
@@ -10,5 +11,8 @@ public interface ProdutoInterface {
     boolean softDelete(int id_produto);
     boolean remover(int id_produto);
     ResultSet buscarPorID(int id);
-    ResultSet buscar();
+    ResultSet pesquisar();
+    ResultSet pesquisar(String nome);
+    ResultSet pesquisar(Date data);
+    ResultSet pesquisar(String nome, Date data);
 }

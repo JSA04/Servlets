@@ -25,7 +25,7 @@ public class EntrarServlet extends HttpServlet {
         session.setAttribute("classMsg", "erro_msg");
 
         boolean encontrado = false, senha_confere = false;
-        int id = 0;
+        String id = null;
         AdmConexao admConexao = new AdmConexao();
         String user = request.getParameter("user");
         if (user == null) user = (String) request.getAttribute("user");
@@ -43,7 +43,7 @@ public class EntrarServlet extends HttpServlet {
                 if (adms.getString("usuario").equals(user) || adms.getString("email").equals(user)) {
                     encontrado = true;
                     if (adms.getString("senha").equals(senha)) {
-                        id = adms.getInt("id");
+                        id = adms.getString("cpf");
                         senha_confere = true;
                         break;
                     }
@@ -65,7 +65,7 @@ public class EntrarServlet extends HttpServlet {
             request.getRequestDispatcher("entrar.jsp").forward(request, response);
         }
     }
-    protected void autenticar(HttpServletRequest request, String user, int id) {
+    protected void autenticar(HttpServletRequest request, String user, String id) {
         HttpSession session = request.getSession();
 
         session.setAttribute("usuario", user);

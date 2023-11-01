@@ -55,7 +55,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         }
 
         //objeto
-        Produto produto = new Produto(nome, preco, descricao, dataValidadeCorrigida, id, quantidade, linkImagem, (int) session.getAttribute("idUsuario"), categoria);
+        Produto produto = new Produto(nome, preco, descricao, dataValidadeCorrigida, id, quantidade, linkImagem, (String) session.getAttribute("idUsuario"), categoria);
         new ProdutoConexao().inserir(produto);
 
         //no fim do cadastro ele vai para a tela dashboard

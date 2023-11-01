@@ -62,10 +62,10 @@ public class DashboardServlet extends HttpServlet {
                 }
             }
 
-            if (filtroNome.isEmpty()) filtroNome = null;
+            try { if (filtroNome.isEmpty()) filtroNome = null; }
+            catch (NullPointerException err) { filtroNome = null; }
 
-            if (filtroNome != null&& filtroData != null)
-                produtos = new ProdutoConexao().pesquisar(filtroNome, filtroData);
+            if (filtroNome != null && filtroData != null) produtos = new ProdutoConexao().pesquisar(filtroNome, filtroData);
             else if (filtroNome != null) produtos = new ProdutoConexao().pesquisar(filtroNome);
             else if (filtroData != null) produtos = new ProdutoConexao().pesquisar(filtroData);
             else {

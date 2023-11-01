@@ -27,6 +27,15 @@ main {
     cursor: pointer;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+#buscar_id {
+    padding-left: 50px;
+}
+
 #produtos {
     display: flex;
     justify-content: space-around;

@@ -4,14 +4,14 @@ public class Administracao {
     private String usuario;
     private String email;
     private String senha;
-    private int id;
+    private int cpf;
 
     //CONSTRUTOR
-    public Administracao(String usuario, String email, String senha, int id) {
+    public Administracao(String usuario, String email, String senha, int cpf) {
         this.usuario = usuario;
         this.email = email;
         this.senha = senha;
-        this.id = id;
+        this.cpf = cpf;
     }
 
     //GETTERS
@@ -28,8 +28,8 @@ public class Administracao {
         return senha;
     }
 
-    public int getId() {
-        return id;
+    public int getCPF() {
+        return cpf;
     }
 
 
@@ -56,7 +56,7 @@ public class Administracao {
                 "usuario='" + usuario + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", id=" + id +
+                ", cpf=" + cpf +
                 '}';
     }
 }

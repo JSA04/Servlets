@@ -39,13 +39,13 @@ public class AdmConexao implements AdmInterface{
         try  {
             conectar();
             // Instanciando o objeto preparedStatement (pstmt)
-            pstmt = conn.prepareStatement("INSERT INTO ADMINISTRADOR (USUARIO,EMAIL,SENHA,ID) VALUES (?,?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO ADMINISTRADOR (USUARIO,EMAIL,SENHA,CPF) VALUES (?,?,?,?)");
 
             // Setando o valor aos parâmetros
             pstmt.setString(1, adm.getUsuario());
             pstmt.setString(2, adm.getEmail());
             pstmt.setString(3, adm.getSenha());
-            pstmt.setInt(4, adm.getId());
+            pstmt.setInt(4, adm.getCPF());
 
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT
@@ -65,13 +65,13 @@ public class AdmConexao implements AdmInterface{
     public boolean alterar(Administracao adm) {
         conectar();
         try {
-            pstmt = conn.prepareStatement("UPDATE ADMINISTRADOR SET USUARIO=?, EMAIL=?, SENHA=? WHERE ID=?");
+            pstmt = conn.prepareStatement("UPDATE ADMINISTRADOR SET USUARIO=?, EMAIL=?, SENHA=? WHERE CPF=?");
 
             //SETANDO OS PARAMETROS
             pstmt.setString(1, adm.getUsuario());
             pstmt.setString(2, adm.getEmail());
             pstmt.setString(3, adm.getSenha());
-            pstmt.setInt(4, adm.getId());
+            pstmt.setInt(4, adm.getCPF());
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE RETORNA AS LINHAS QUE TEM
             pstmt.executeUpdate();
@@ -95,7 +95,7 @@ public class AdmConexao implements AdmInterface{
             pstmt = conn.prepareStatement(remover);
 
             //SETANDO OS PARAMETROS
-            pstmt.setInt(1, adm.getId());
+            pstmt.setInt(1, adm.getCPF());
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE RETORNA AS LINHAS QUE TEM
             pstmt.executeUpdate();

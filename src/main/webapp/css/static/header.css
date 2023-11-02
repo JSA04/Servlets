@@ -10,18 +10,36 @@ header {
     justify-content: center;
   }
 
-.titulo, .usuario {
-    color: white;
-    font-weight: 600;
-    font-size: 25px;
-
-}
-
 .nav {
     display: flex;
     justify-content: space-between;
     width: 95%;
     padding-top: 50px;
+}
+
+.perfil {
+    display: flex;
+}
+
+.perfil_img {
+    background-image: url("../../img/perfil.svg");
+    background-size: cover;
+    background-position: center;
+    min-width: 60px;
+    max-height: 56px;
+}
+
+.perfil_info p, .perfil_info h1 {
+    color: white;
+    padding-left: 5px;
+}
+
+.perfil_info h1 {
+    padding-top: 15px;
+}
+
+.perfil_info p {
+    font-size: 12px;
 }
 
 .nav_button {

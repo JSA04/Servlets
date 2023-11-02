@@ -74,15 +74,17 @@ public class ProdutoConexao implements ProdutoInterface{
         public boolean alterar(Produto produto) {
         conectar();
         try {
-            pstmt = conn.prepareStatement("UPDATE PRODUTO SET nome = ?, quant = ?, preco = ?, data_validade = ?, descricao = ? WHERE id = ?");
+            pstmt = conn.prepareStatement("UPDATE PRODUTO SET nome = ?, preco = ?, descricao = ?, quant = ?, imagem = ?, categoria = ? WHERE id = ?");
 
             // Setando o valor aos parâmetros
             pstmt.setString(1, produto.getNome());
-            pstmt.setInt(2, produto.getQuantidade());
-            pstmt.setDouble(3, produto.getPreco());
-            pstmt.setDate(4, produto.getData_validade());
-            pstmt.setString(5, produto.getDescricao());
-            pstmt.setInt(6, produto.getId());
+            pstmt.setDouble(2, produto.getPreco());
+            pstmt.setString(3, produto.getDescricao());
+            pstmt.setInt(4, produto.getQuantidade());
+            pstmt.setString(5, produto.getImagem());
+            pstmt.setString(6, produto.getCategoria());
+            pstmt.setInt(7, produto.getId());
+
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE RETORNA AS LINHAS QUE TEM
             pstmt.executeUpdate();
@@ -224,10 +226,7 @@ public class ProdutoConexao implements ProdutoInterface{
         conectar();
         try {
             // Instanciando o objeto preparedStatement (pstmt)
-            pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE" +
-                    "UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
-                    "UPPER(categoria) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
-                    "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%')) AND " +
+            pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE " +
                     "DATA_VALIDADE = ?");
 
             pstmt.setDate(1, data);
@@ -250,9 +249,9 @@ public class ProdutoConexao implements ProdutoInterface{
         try {
             // Instanciando o objeto preparedStatement (pstmt)
             pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE " +
-                    "UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
+                    "(UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
                     "UPPER(categoria) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
-                    "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%')) AND " +
+                    "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%'))) AND " +
                     "DATA_VALIDADE = ?");
 
             pstmt.setString(1, nome);

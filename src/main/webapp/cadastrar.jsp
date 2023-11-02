@@ -13,9 +13,7 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                <h1 class="titulo"></h1>
-            </div>
+            <div></div>
             <div class="nav_button">
                 <a href="entrar.jsp" class="header_button" id="entrar_button">Entrar</a>
                 <a href="cadastrar.jsp" class="header_button" id="cadastrar_button">Cadastrar</a>
@@ -31,22 +29,27 @@
                 </div>
                 <div class="campos">
                     <div class="form_campo">
-                        <label for="nome_completo_id">Usuário</label>
+                        <label for="nome_completo_id"></label>
                         <input type="text" class="input" name="nome_completo" id="nome_completo_id" 
                         placeholder="Usuário" required>
                     </div>
                     <div class="form_campo">
-                        <label for="email_id">E-mail</label>
+                        <label for="cpf_id"></label>
+                        <input type="text" class="input" name="cpf" id="cpf_id"
+                               placeholder="CPF" required>
+                    </div>
+                    <div class="form_campo">
+                        <label for="email_id"></label>
                         <input type="email" class="input" name="email" id="email_id" 
                         placeholder="E-mail" required>
                     </div>
                     <div class="form_campo">
-                        <label for="senha_id">Criar Senha</label>
+                        <label for="senha_id"></label>
                         <input type="password" class="input" name="senha" id="senha_id"
                         placeholder="Senha" required>
                     </div>
                     <div class="form_campo">
-                        <label for="confirmar_senha_id">Confirmar Senha</label>
+                        <label for="confirmar_senha_id"></label>
                         <input type="password" class="input" name="confirmar_senha" id="confirmar_senha_id" 
                         placeholder="Confirmar Senha" required>
                     </div>

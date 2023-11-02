@@ -4,10 +4,10 @@ public class Administracao {
     private String usuario;
     private String email;
     private String senha;
-    private int cpf;
+    private String cpf;
 
     //CONSTRUTOR
-    public Administracao(String usuario, String email, String senha, int cpf) {
+    public Administracao(String usuario, String email, String senha, String cpf) {
         this.usuario = usuario;
         this.email = email;
         this.senha = senha;
@@ -28,7 +28,7 @@ public class Administracao {
         return senha;
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return cpf;
     }
 

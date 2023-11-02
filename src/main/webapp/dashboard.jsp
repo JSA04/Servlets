@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EqualityFood</title>
+    <title>EqualityFood - Produtos</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./css/static/styles.css">
     <link rel="stylesheet" type="text/css" href="./css/static/header.css">
@@ -18,8 +18,14 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                <h1 class="titulo">Produtos</h1>
+            <div class="perfil">
+                <div class="perfil_img"></div>
+                <div class="perfil_info">
+                    <a href="alterar_admin">
+                        <h1><%= request.getSession().getAttribute("usuario") %></h1>
+                        <p><%= request.getSession().getAttribute("email") %></p>
+                    </a>
+                </div>
             </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
@@ -33,6 +39,11 @@
                 <label for="busca_input_id">Buscar: </label>
                 <input type="text" name="busca_input" id="busca_input_id" class="input" placeholder="Palavra-Chave">
             </div>
+            <% if ((boolean) (request.getAttribute("pesquisa"))) { %>
+            <div id="limpar_filtro">
+                <a href="dashboard"> Limpar filtros </a>
+            </div>
+            <% } %>
             <div>
                 <label for="data_input_id">Filtrar por data: </label>
                 <input type="date" name="data_input" id="data_input_id" class="input">
@@ -53,15 +64,15 @@
                     <div class="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
                     <% } %>
                 </a>
-                <a href="excluir?id_produto=<%= produto.get("id") %>">
+                <a href="excluir_produto?id_produto=<%= produto.get("id") %>">
                     <button class="produto_button"> Remover Produto </button>
                 </a>
             </div>
 
             <% } %>
 
-            <% if (produtos.isEmpty()) { %>
-                <p>Não há pedidos desse produto. </p>
+            <% if ((boolean) (request.getAttribute("pesquisa")) && produtos.isEmpty()) { %>
+                <p>Não foram encontrados produtos para esta pesquisa. </p>
             <% } %>
 
             <% if (!(boolean) (request.getAttribute("pesquisa"))) { %>

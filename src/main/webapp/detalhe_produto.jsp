@@ -19,8 +19,14 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                <h1 class="titulo">Pedidos</h1>
+            <div class="perfil">
+                <div class="perfil_img"></div>
+                <div class="perfil_info">
+                    <a href="alterar_admin">
+                        <h1><%= request.getSession().getAttribute("usuario") %></h1>
+                        <p><%= request.getSession().getAttribute("email") %></p>
+                    </a>
+                </div>
             </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
@@ -55,8 +61,11 @@
                     <p style="font-weight: bold;">Descrição</p>
                     <p id="produto_desc"><%= produto.get("descricao") %></p>
                     <% } %>
-                    <a href="excluir?id_produto=${id_produto}">
+                    <a href="excluir_produto?id_produto=${id_produto}">
                         <button id="excluir_button">Excluir</button>
+                    </a>
+                    <a href="alterar_produto?id_produto=${id_produto}">
+                        <button id="alterar_button">Alterar</button>
                     </a>
                 </div>
             </div>
@@ -70,7 +79,7 @@
 
                 <% for (Map<String, String> pedido: pedidos) { %>
 
-                <a href="detalhe?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">
+                <a href="detalhe_pedido?id_pedido=<%= pedido.get("id_pedido") %>" class="pedido">
                     <h1 class="nome_cliente"><%= pedido.get("cliente") %></h1>
                     <div class="pedido_info">
                         <p>Total: <%= pedido.get("total") %></p>

@@ -14,9 +14,7 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                <h1 class="titulo"></h1>
-            </div>
+            <div></div>
             <div class="nav_button">
                 <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>
             </div>
@@ -30,7 +28,7 @@
                 <div class="produto_infos">
                     <div class="info">
                         <label for="nome_id">Nome</label>
-                        <input type="text" class="input" name="nome" id="nome_id" required>
+                        <input type="text" class="input" name="nome" id="nome_id" maxlength="50" required>
                     </div>
                     <div class="info">
                         <label for="categoria_id">Categoria</label>
@@ -45,18 +43,18 @@
                     </div>
                     <div class="info">
                         <label for="quantidade_id">Quantidade</label>
-                        <input type="number" min="1" class="input" name="quantidade" id="quantidade_id" required>
+                        <input type="number" min="1" max="10000" class="input" name="quantidade" id="quantidade_id" required>
                     </div>
                     <div class="info">
                         <label for="preco_id">Preço</label>
-                        <input type="number" min="0" class="input" name="preco" id="preco_id" step="0.01" required>
+                        <input type="number" min="0" max="10000" class="input" name="preco" id="preco_id" step="0.01" required>
                     </div>
                 </div>
                 <label for="data_validade_id">Data de validade: </label>
                 <input class="input" type="date" name="validade" id="data_validade_id" required>
                 <label for="escolher_img">Insira a Imagem (URL): </label>
-                <input class="input" type="text" name="imagem_url" id="escolher_img">
-                <textarea class="input" name="descricao" id="descricao_id" cols="30" rows="3" placeholder="Descrição"></textarea>
+                <input class="input" type="text" name="imagem_url" id="escolher_img" maxlength="200">
+                <textarea class="input" name="descricao" id="descricao_id" cols="30" rows="3" maxlength="200" placeholder="Descrição"></textarea>
                 <input class="input" type="submit" id="confirmar_button" value="Cadastrar">
             </form>
         </div>

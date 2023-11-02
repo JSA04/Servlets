@@ -45,7 +45,7 @@ public class AdmConexao implements AdmInterface{
             pstmt.setString(1, adm.getUsuario());
             pstmt.setString(2, adm.getEmail());
             pstmt.setString(3, adm.getSenha());
-            pstmt.setInt(4, adm.getCPF());
+            pstmt.setString(4, adm.getCPF());
 
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT
@@ -71,7 +71,7 @@ public class AdmConexao implements AdmInterface{
             pstmt.setString(1, adm.getUsuario());
             pstmt.setString(2, adm.getEmail());
             pstmt.setString(3, adm.getSenha());
-            pstmt.setInt(4, adm.getCPF());
+            pstmt.setString(4, adm.getCPF());
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE RETORNA AS LINHAS QUE TEM
             pstmt.executeUpdate();
@@ -90,12 +90,12 @@ public class AdmConexao implements AdmInterface{
         conectar();
         //VERIFICA SE O REGISTRO NÃO EXISTE
         try {
-            String remover = "DELETE FROM ADMINISTRADOR WHERE ID = ?";
+            String remover = "DELETE FROM ADMINISTRADOR WHERE CPF = ?";
             //INSTANCIANDO O OBJETO PREPAREDSTATAMENT (PSTMT)
             pstmt = conn.prepareStatement(remover);
 
             //SETANDO OS PARAMETROS
-            pstmt.setInt(1, adm.getCPF());
+            pstmt.setString(1, adm.getCPF());
 
             //EXECUTA O COMANDO SQL DO PREPARESTATAMENT O UPDATE RETORNA AS LINHAS QUE TEM
             pstmt.executeUpdate();
@@ -108,14 +108,14 @@ public class AdmConexao implements AdmInterface{
         }
     }
     //MOSTRA OS ADMs PELO ID ESCOLIDO
-    public ResultSet buscarPorID(int id) {
+    public ResultSet buscarPorCPF(String cpf) {
         conectar();
         try {
             // Instanciando o objeto preparedStatement (pstmt)
-                pstmt = conn.prepareStatement("SELECT * FROM ADMINISTRADOR WHERE ID=?");
+                pstmt = conn.prepareStatement("SELECT * FROM ADMINISTRADOR WHERE CPF=?");
 
             //SETANDO OS PARAMETROS
-            pstmt.setInt(1, id);
+            pstmt.setString(1, cpf);
 
             // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
             rs = pstmt.executeQuery();
@@ -155,10 +155,11 @@ public class AdmConexao implements AdmInterface{
         conectar();
         try {
             // Instanciando o objeto preparedStatement (pstmt)
-            pstmt = conn.prepareStatement("SELECT * FROM ADMINISTRADOR WHERE USUARIO = ? OR EMAIL = ?");
+            pstmt = conn.prepareStatement("SELECT * FROM ADMINISTRADOR WHERE USUARIO = ? OR EMAIL = ? OR CPF = ?");
 
             pstmt.setString(1, adm.getUsuario());
             pstmt.setString(2, adm.getEmail());
+            pstmt.setString(3, adm.getCPF());
 
             // Executando o comando sql do objeto preparedStatement e armazenando no ResultSet
             rs = pstmt.executeQuery();

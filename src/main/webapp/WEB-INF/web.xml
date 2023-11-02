@@ -5,7 +5,7 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
-    <!-- CadastrarServlet -->
+    <!-- EntrarServlet -->
 
     <servlet>
         <servlet-name>entrar</servlet-name>
@@ -46,8 +46,20 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>excluir-produto</servlet-name>
-        <url-pattern>/excluir</url-pattern>
+        <url-pattern>/excluir_produto</url-pattern>
     </servlet-mapping>
+
+    <!-- AdminServlet -->
+
+    <servlet>
+        <servlet-name>alterar-admin</servlet-name>
+        <servlet-class>com.example.servlets.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alterar-admin</servlet-name>
+        <url-pattern>/alterar_admin</url-pattern>
+    </servlet-mapping>
+
 
     <!-- DetalhePedidoServlet -->
 
@@ -57,7 +69,18 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>detalhe-pedido</servlet-name>
-        <url-pattern>/detalhe</url-pattern>
+        <url-pattern>/detalhe_pedido</url-pattern>
+    </servlet-mapping>
+
+    <!-- AlterarProdutoServlet -->
+
+    <servlet>
+        <servlet-name>alterar-produto</servlet-name>
+        <servlet-class>com.example.servlets.AlterarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alterar-produto</servlet-name>
+        <url-pattern>/alterar_produto</url-pattern>
     </servlet-mapping>
 
     <!-- CadastrarProdutoServlet -->
@@ -98,6 +121,20 @@
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
+    </error-page>
+
+    <!-- Erro500 -->
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
+
+    <!-- Erro500 -->
+
+    <error-page>
+        <error-code>405</error-code>
+        <location>/index.jsp</location>
     </error-page>
 
 </web-app>

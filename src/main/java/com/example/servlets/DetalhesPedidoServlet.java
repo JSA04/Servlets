@@ -19,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-@WebServlet(name = "detalhe-pedido", value = "/detalhe-pedido")
+@WebServlet(name = "detalhe-pedido", value = "/detalhe_pedido")
 public class DetalhesPedidoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

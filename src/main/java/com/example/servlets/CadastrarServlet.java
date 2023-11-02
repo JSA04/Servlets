@@ -30,37 +30,28 @@ public class CadastrarServlet extends HttpServlet {
         try {
             //Obtendo as informações
             String nome = request.getParameter("nome_completo");
+            String cpf = request.getParameter("cpf");
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
             String confirmarSenha = request.getParameter("confirmar_senha");
-            int novoId = 0;
-            int maior = 0;
 
             //Criando objeto AdmConexão
             AdmConexao admConexao = new AdmConexao();
 
-            //Método para pegar o ultimo id e adicionar mais 1
-            ResultSet rs1= admConexao.buscar();
-            if(rs1!=null){
-                try{
-                    while (rs1.next()) {
-                        novoId = rs1.getInt("id");
-                        if (novoId > maior) {
-                            maior = novoId;
-                        }
-                    }
-                    maior++;
-                }catch (SQLException sqle){
-                    sqle.printStackTrace();
-                }
-            }
-
             //Criando objeto administrador com suas informações
-            Administracao administrador = new Administracao(nome, email, senha, maior);
+            Administracao administrador = new Administracao(nome, email, senha, cpf);
 
-
+            //Verificando se o cpf tem 11 digitos
+            if (cpf.length() != 11) {
+                session.setAttribute("classMsg", "erro_msg");
+                session.setAttribute("msg", "O CPF deve conter 11 digítos! ");
+                request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
             //Verificando se senhas são iguais
-            if (Objects.equals(senha, confirmarSenha)) {
+            } else if (!Objects.equals(senha, confirmarSenha)) {
+                session.setAttribute("classMsg", "erro_msg");
+                session.setAttribute("msg", "As senhas não conferem! ");
+                request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
+            } else {
                 if (!(admConexao.verificaExistencia(administrador))){
                     //Adicionando no banco de dados
                     admConexao.inserir(administrador);
@@ -69,13 +60,9 @@ public class CadastrarServlet extends HttpServlet {
                     request.getRequestDispatcher("/entrar").forward(request, response);
                 } else {
                     session.setAttribute("classMsg", "erro_msg");
-                    session.setAttribute("msg", "Este usuario já existe! ");
+                    session.setAttribute("msg", "O Nome de Úsuario, E-mail ou CPF já está em uso! ");
                     request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
                 }
-            } else {
-                session.setAttribute("classMsg", "erro_msg");
-                session.setAttribute("msg", "As senhas não conferem! ");
-                request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -54,6 +54,18 @@
     cursor: pointer;
 }
 
+#alterar_button {
+    background-color: #db8711;
+    border-radius: 12px;
+    margin-top: 10px;
+    min-width: 100%;
+    min-height: 55px;
+    color: #FFF;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
 /* pedidos */
 
 #pedidos {

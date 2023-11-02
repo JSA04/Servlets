@@ -20,7 +20,7 @@ import com.example.jdbc.Pedido.PedidoConexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "produtos", value = "/detalhe-produto")
+@WebServlet(name = "detalhe-produto", value = "/detalhe_produto")
 public class DetalheProdutoServlet extends HttpServlet {
 
     //sempre que a requisição que você faz não altere o estado do servidor, como uma consulta, uma busca e etc

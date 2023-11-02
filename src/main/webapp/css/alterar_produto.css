@@ -1,0 +1,84 @@
+.div_alterar_produto {
+    display: flex;
+    min-width: 800px;
+    height: 70vh;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.div_alterar_produto *{
+    overflow: hidden;
+}
+
+.div_alterar_produto h1 {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.div_alterar_produto form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 20px;
+}
+
+.produto_infos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    padding: 10px 0 20px 0;
+    gap: 10px;
+}
+
+#confirmar_button {
+    background-image: url("../img/textura.svg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 70px;
+    border-radius: 12px;
+    color: white;
+    min-width: 100%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .div_alterar_produto {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-height: 980px) {
+    .div_alterar_produto {
+        height: 75vh;
+    }
+}
+
+@media screen and (max-height: 680px) {
+    .info {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        padding: 0 0 10px 0;
+    }
+}
+
+@media screen and (max-height: 680px) {
+    .div_alterar_produto form {
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .div_alterar_produto h1 {
+        font-size: 35px;
+    }
+}

@@ -14,9 +14,7 @@
 <body>
     <header>
         <div class="nav">
-            <div>
-                <h1 class="titulo"></h1>
-            </div>
+            <div></div>
             <div class="nav_button">
                 <a href="entrar.jsp" class="header_button" id="entrar_button">Entrar</a>
                 <a href="cadastrar.jsp" class="header_button" id="cadastrar_button">Cadastrar</a>

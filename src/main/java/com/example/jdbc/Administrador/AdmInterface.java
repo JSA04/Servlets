@@ -8,7 +8,7 @@ public interface AdmInterface {
     boolean inserir(Administracao adm);
     boolean alterar(Administracao adm);
     boolean remover(Administracao adm);
-    ResultSet buscarPorID(int id);
+    ResultSet buscarPorCPF(String cpf);
     ResultSet buscar();
     boolean verificaExistencia(Administracao adm);
 }

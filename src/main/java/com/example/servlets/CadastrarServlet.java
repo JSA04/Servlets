@@ -27,14 +27,14 @@ public class CadastrarServlet extends HttpServlet {
         //cria uma sessão se um já não existe para este usuário
         HttpSession session = request.getSession();
 
-        try {
-            //Obtendo as informações
-            String nome = request.getParameter("nome_completo");
-            String cpf = request.getParameter("cpf");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
-            String confirmarSenha = request.getParameter("confirmar_senha");
+        //Obtendo as informações
+        String nome = request.getParameter("nome_completo");
+        String cpf = request.getParameter("cpf");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String confirmarSenha = request.getParameter("confirmar_senha");
 
+        try {
             //Criando objeto AdmConexão
             AdmConexao admConexao = new AdmConexao();
 

@@ -63,7 +63,6 @@ public class DetalhesPedidoServlet extends HttpServlet {
         request.setAttribute("listaItems", listaItems);
         request.setAttribute("total", total);
 
-
         request.getRequestDispatcher("detalhe_pedido.jsp").forward(request, response);
     }
 }

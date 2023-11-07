@@ -19,20 +19,18 @@
 <body>
     <header>
         <div class="nav">
-            <a href="alterar_admin.jsp">
-                <div class="perfil">
-                    <div class="perfil_img"></div>
-                    <div class="perfil_info">
-                        <a href="alterar_admin">
-                            <h1><%= request.getSession().getAttribute("usuario") %></h1>
-                            <p><%= request.getSession().getAttribute("email") %></p>
-                        </a>
-                    </div>
+            <div class="perfil">
+                <div class="perfil_img"></div>
+                <div class="perfil_info">
+                    <a href="alterar_admin">
+                        <h1><%= request.getSession().getAttribute("usuario") %></h1>
+                        <p><%= request.getSession().getAttribute("email") %></p>
+                    </a>
                 </div>
-            </a>
+            </div>
             <div class="nav_button">
                 <a href="sair" class="header_button" id="sair_button">Sair</a>
-                <a href="detalhe_produto?id_produto=${id_produto}" class="header_button" id="voltar_button">Voltar</a>
+                <a href="dashboard" class="header_button" id="voltar_button">Voltar</a>
             </div>
         </div>
     </header>

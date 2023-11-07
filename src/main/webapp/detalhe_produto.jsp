@@ -42,9 +42,9 @@
             <div id="detalhes_produto">
 
                 <% if (produto.get("imagem") == null || produto.get("imagem").equals("")) { %>
-                <div id="produto_img" style="background-image: url('img/produto.svg')"></div>
+                    <div id="produto_img" style="background-image: url('img/produto.svg')"></div>
                 <% } else { %>
-                <div id="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
+                    <div id="produto_img" style="background-image: url('<%= produto.get("imagem") %>')"></div>
                 <% } %>
 
                 <div id="detalhes">

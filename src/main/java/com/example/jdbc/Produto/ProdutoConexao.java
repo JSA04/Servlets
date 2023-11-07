@@ -227,7 +227,7 @@ public class ProdutoConexao implements ProdutoInterface{
         try {
             // Instanciando o objeto preparedStatement (pstmt)
             pstmt = conn.prepareStatement( "SELECT * FROM produto WHERE " +
-                    "DATA_VALIDADE = ?");
+                    "DATA_VALIDADE BETWEEN current_date AND ?");
 
             pstmt.setDate(1, data);
 
@@ -252,7 +252,7 @@ public class ProdutoConexao implements ProdutoInterface{
                     "(UPPER(nome) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
                     "UPPER(categoria) LIKE UPPER (CONCAT('%', ?, '%')) OR " +
                     "UPPER(descricao) LIKE UPPER (CONCAT('%', ?, '%'))) AND " +
-                    "DATA_VALIDADE = ?");
+                    "DATA_VALIDADE BETWEEN current_date AND ?");
 
             pstmt.setString(1, nome);
             pstmt.setString(2, nome);

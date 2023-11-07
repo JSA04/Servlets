@@ -45,7 +45,7 @@
             </div>
             <% } %>
             <div>
-                <label for="data_input_id">Filtrar por data: </label>
+                <label for="data_input_id">Vence até: </label>
                 <input type="date" name="data_input" id="data_input_id" class="input">
                 <input type="submit" value="Buscar" id="buscar_button">
             </div>
